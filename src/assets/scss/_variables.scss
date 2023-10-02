@@ -1,0 +1,21 @@
+// ------------ COLOR VARIABLES ------------
+$primary-color: #F2A154;
+$secondary-color: #E7E6E1;
+$tertiary-color: #314E52;
+// ------------ GLOBAL VARIABLES ------------
+$change-color-delay: 0.2s linear;
+$primary-border-radius: 4px;
+$article-width: 920px;
+$HD_resolution: 1280px;
+$sidePanel-width: 240px;
+$panel-icon-size: 48px;
+
+// ------------ BREAKPOINTS ------------
+$device-M: 1024px;
+$device-S: 660px;
+$device-XS: 480px;
+
+// ------------ UNSUPPORTED TAGS ------------
+:root {
+    --overflow: overlay;
+}
