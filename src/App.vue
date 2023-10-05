@@ -6,8 +6,8 @@
           <div class="agriculture_icon_svg"></div>
         </div>
           <nav>
-              <router-link to="/home">Domov</router-link>
-              <router-link to="/order">Objednat si</router-link>
+              <router-link to="/">Home</router-link>
+              <router-link to="/order">Order</router-link>
           </nav>
       </div>
     </header>
@@ -18,11 +18,6 @@
       <div class="container">
         <div class="copyright">
           &copy; 2023 <a href="/">Blind friendly web</a>
-        </div>
-        <div class="social">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
         <div class="contact">
           <a href="/kontakt">Kontakt</a>

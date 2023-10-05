@@ -2,12 +2,12 @@
   <div id="home">
     <div class="hero">
       <div>
-        <h1>Prodej aut</h1>
+        <h1>DEMO - Blind friendly web</h1>
       </div>
     </div>
     <section class="section_aboutUs">
       <div>
-        <h1>O nás</h1>
+        <h1>About us</h1>
         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean vel massa quis mauris vehicula lacinia. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
           consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Vivamus ac leo pretium faucibus. Morbi imperdiet, mauris ac auctor dictum, nisl ligula egestas nulla, et sollicitudin sem
           purus in lacus. Donec ipsum massa, ullamcorper in, auctor et, scelerisque sed, est. Etiam egestas wisi a erat. Nulla non arcu lacinia neque faucibus fringilla. Etiam dictum tincidunt diam. In
@@ -24,18 +24,20 @@
       </div>
 
     </section>
-    <section class="section_cars">
+    <section class="section_shapes">
       <div>
-        <h1>Nabídka našich aut</h1>
-        <div class="cars">
-          <div class="car" v-for="auto in auta" :key="auto.id">
-            <h2>{{ auto.nazev }}</h2>
-            <p>{{ auto.popis }}</p>
-            <p>{{ auto.cena }}</p>
+        <h1>Type of shapes</h1>
+        <div class="shapes">
+          <div class="shape" v-for="shape in shape" :key="shape.id">
+            <img :src="shape.img" alt="">
+            <div>
+              <h2>{{ shape.name }}</h2>
+              <p>{{ shape.description }}</p>
+              <div class="price_div">
+                <p class="price">{{ shape.price }} $</p>
+                <a href="">Order</a>
+              </div>
 
-            <!-- Popisek obrázku -->
-            <div class="">
-              {{ auto.popisObrazku }}
             </div>
           </div>
         </div>
@@ -50,48 +52,48 @@
 export default {
   data() {
     return {
-      auta: [
+      shape: [
         {
           id: 1,
-          nazev: "Škoda Octavia",
-          popis: "Kombík s benzinovým motorem",
-          cena: 600000,
-          popisObrazku: "Škoda Octavia je populární rodinný vůz s prostorným interiérem a úsporným motorem.",
+          name: "Square",
+          description: "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+          price: 100000,
+          img: "https://d1whtlypfis84e.cloudfront.net/guides/wp-content/uploads/2018/02/18045916/GM05.gif",
         },
         {
           id: 2,
-          nazev: "Volkswagen Golf",
-          popis: "Hatchback s dieselovým motorem",
-          cena: 500000,
-          popisObrazku: "Volkswagen Golf je ikonický hatchback, který je známý svou spolehlivostí a výkonem.",
+          name: "Circle",
+          description: "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+          price: 200000,
+          img: "https://d1whtlypfis84e.cloudfront.net/guides/wp-content/uploads/2018/02/18045941/2000px-Circle_-_black_simple.svg_-300x300.png",
         },
         {
           id: 3,
-          nazev: "Audi A4",
-          popis: "Sedan s hybridním motorem",
-          cena: 700000,
-          popisObrazku: "Audi A4 je prémiový sedan, který nabízí luxusní interiér a výkonný motor.",
+          name: "Rectangle",
+          description: "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+          price: 300000,
+          img: "https://d1whtlypfis84e.cloudfront.net/guides/wp-content/uploads/2018/02/18050005/rectangle.jpg",
         },
         {
           id: 4,
-          nazev: "Tatra",
-          popis: "Hatchback s dieselovým motorem",
-          cena: 50000,
-          popisObrazku: "Volkswagen Golf je ikonický hatchback, který je známý svou spolehlivostí a výkonem.",
+          name: "Triangle",
+          description: "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+          price: 400000,
+          img: "https://d1whtlypfis84e.cloudfront.net/guides/wp-content/uploads/2018/02/18050032/Simple_triangle.svg_-300x300.png",
         },
         {
           id: 5,
-          nazev: "Opel",
-          popis: "Hatchback s dieselovým motorem",
-          cena: 900000,
-          popisObrazku: "Volkswagen Golf je ikonický hatchback, který je známý svou spolehlivostí a výkonem.",
+          name: "Polygons",
+          description: "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+          price: 500000,
+          img: "https://d1whtlypfis84e.cloudfront.net/guides/wp-content/uploads/2018/02/18050103/PolygonsQuadrilateralTrianglesPentagonPolygonSongHeptagon-768x576.jpg",
         },
         {
-          id: 6,
-          nazev: "Peguet",
-          popis: "Hatchback s dieselovým motorem",
-          cena: 300000,
-          popisObrazku: "Volkswagen Golf je ikonický hatchback, který je známý svou spolehlivostí a výkonem.",
+          id: 2,
+          name: "Parallelogram",
+          description: "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+          price: 600000,
+          img: "https://d1whtlypfis84e.cloudfront.net/guides/wp-content/uploads/2018/02/18050154/5f9d9fbdf3a5f2b2141bd6ae90ef2418351e96d0.png",
         },
       ],
     };
