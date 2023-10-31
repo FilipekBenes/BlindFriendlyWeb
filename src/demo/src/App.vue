@@ -27,12 +27,12 @@
   </div>
 </template>
 
-<style scoped src="./assets/scss/app.scss"  lang="scss"></style>
-<style src="./assets/scss/main.scss" lang="scss"></style>
+<style scoped src="@/assets/scss/app.scss"  lang="scss"></style>
+<style src="@/assets/scss/main.scss" lang="scss"></style>
 
 <script>
 export default {
-  components: { },
+  components: {},
   data() {
   },
 };

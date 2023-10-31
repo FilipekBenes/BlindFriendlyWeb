@@ -1,9 +1,12 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router';
+import '../../lib/speaker';
+import { setTTS } from '../../lib/speaker';
 
-const app = createApp(App)
+const app = createApp(App);
+app.use(router);
+app.mount('#app');
 
-app.use(router)
+setTTS(1,1,1.2,"en");
 
-app.mount('#app')

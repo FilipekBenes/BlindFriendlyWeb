@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite --host",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "vite ./src/demo",
+    "build": "vite build ./src/demo",
+    "preview": "vite preview ./src/demo"
   },
   "dependencies": {
     "@vueuse/core": "^10.5.0",

@@ -7,7 +7,7 @@
     </div>
     <section class="section_aboutUs">
       <div>
-        <h1>About us</h1>
+        <h1 sp-el>About us</h1>
         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean vel massa quis mauris vehicula lacinia. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
           consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Vivamus ac leo pretium faucibus. Morbi imperdiet, mauris ac auctor dictum, nisl ligula egestas nulla, et sollicitudin sem
           purus in lacus. Donec ipsum massa, ullamcorper in, auctor et, scelerisque sed, est. Etiam egestas wisi a erat. Nulla non arcu lacinia neque faucibus fringilla. Etiam dictum tincidunt diam. In
@@ -26,13 +26,13 @@
     </section>
     <section class="section_shapes">
       <div>
-        <h1>Type of shapes</h1>
+        <h1 sp-el>Type of shapes</h1>
         <div class="shapes">
           <div class="shape" v-for="shape in shape" :key="shape.id">
             <img :src="shape.img" alt="">
             <div>
               <h2>{{ shape.name }}</h2>
-              <p>{{ shape.description }}</p>
+              <p sp-el>{{ shape.description }}</p>
               <div class="price_div">
                 <p class="price">{{ shape.price }} $</p>
                 <a href="">Order</a>
@@ -42,19 +42,14 @@
         </div>
       </div>
     </section>
-    <TTS/>
+    <TTS />
   </div>
 </template>
 
-<style scoped src="../assets/scss/home.scss"  lang="scss"></style>
+<style scoped src="@/assets/scss/home.scss"  lang="scss"></style>
 
 <script>
-import TTS from "./components/TTS.vue";
-
 export default {
-  components: {
-    TTS
-  },
   data() {
     return {
       shape: [

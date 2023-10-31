@@ -49,5 +49,5 @@
   };
   </script>
   
-  <style scoped src="../assets/scss/order.scss" lang="scss"></style>
+  <style scoped src="@/assets/scss/order.scss" lang="scss"></style>
   
