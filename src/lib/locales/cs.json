@@ -1,0 +1,14 @@
+{
+    "cs": {
+        "globalSpeech": {
+            "textNotFound": "Nenachází se zde žádný text k přečtení",
+            "ttsStart": "TTS řečník byl zapnut",
+            "ttsEnd": "TTS řečník byl vypnut"
+        },
+        "speechFocus": {
+            "ttsStart": "TTS navigace byla zapnuta",
+            "ttsEnd": "TTS navigace byla vypnuta"
+        },
+        "speechToText": {}
+    }
+}

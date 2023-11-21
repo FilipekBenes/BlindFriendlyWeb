@@ -1,0 +1,16 @@
+{
+    "en": {
+        "globalSpeech": {
+            "textNotFound": "There is no text to read",
+            "ttsEnd": "TTS speaker has been turned off",
+            "ttsStart": "TTS speaker has been turned on"
+        },
+        "speechFocus": {
+            "ttsEnd": "TTS navigation has been turned off",
+            "ttsStart": "TTS navigation has been turned on"
+        },
+        "speechToText": {
+            "sttStart": "Ready to receive a command."
+        }
+    }
+}

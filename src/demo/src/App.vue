@@ -6,8 +6,8 @@
           <div class="agriculture_icon_svg"></div>
         </div>
           <nav>
-              <router-link to="/">Home</router-link>
-              <router-link to="/order">Order</router-link>
+              <router-link to="/" data-el-text="Home">Home</router-link>
+              <router-link to="/order" data-el-text="Objednat">Order</router-link>
           </nav>
       </div>
     </header>
@@ -17,10 +17,10 @@
     <footer>
       <div class="container">
         <div class="copyright">
-          &copy; 2023 <a href="/">Blind friendly web</a>
+          &copy; 2023 <a href="/" data-el-text="blind friendly web">Blind friendly web</a>
         </div>
         <div class="contact">
-          <a href="/kontakt">Kontakt</a>
+          <a href="/kontakt" data-el-text="kontakt">Kontakt</a>
         </div>
       </div>
     </footer>
@@ -33,8 +33,6 @@
 <script>
 export default {
   components: {},
-  data() {
-  },
 };
 
 </script>
