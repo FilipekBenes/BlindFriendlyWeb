@@ -10,7 +10,12 @@
             "ttsStart": "TTS navigation has been turned on"
         },
         "speechToText": {
-            "sttStart": "Ready to receive a command."
+            "sttStart": "Ready to receive a command",
+            "foundElement": "We found the same element: {{currentEl}}. You want to {{elAction}} on this element? YES or NO",
+            "nothingFound": "We found no matching element on this page",
+            "actionYes": "The YES action was carried out",
+            "actionNo": "The NO action was carried out",
+            "actionUnknownVoice": "Unknown voice, try again"
         }
     }
 }

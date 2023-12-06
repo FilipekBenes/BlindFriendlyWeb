@@ -8,5 +8,5 @@ const app = createApp(App);
 app.use(router);
 app.mount('#app');
 
-setTTS(1,1,1.2,"en");
+setTTS(1,1,1.2,"cs");
 

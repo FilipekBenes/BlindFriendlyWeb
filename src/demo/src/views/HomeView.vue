@@ -2,13 +2,14 @@
   <div id="home">
     <div class="hero">
       <div>
-        <h1>DEMO - Blind friendly web</h1>
+        <h1>DEMO - Blind friendly lib</h1>
       </div>
     </div>
     <section class="section_aboutUs">
       <div>
         <h1 data-speaker>About us</h1>
-        <p data-speaker>Feet evil to hold long he open knew an no. Apartments occasional boisterous as solicitude to introduced. Or fifteen covered we enjoyed demesne is in prepare. In stimulated my everything it
+        <p data-speaker>Feet evil to hold long he open knew an no. Apartments occasional boisterous as solicitude to introduced. Or fifteen covered we enjoyed demesne is in prepare. In stimulated my
+          everything it
           literature. Greatly explain attempt perhaps in feeling he. House men taste bed not drawn joy. Through enquire however do equally herself at. Greatly way old may you present improve. Wishing
           the feeling village him musical.
 
@@ -33,12 +34,18 @@
               <p data-speaker>{{ shape.description }}</p>
               <div class="price_div">
                 <p class="price">{{ shape.price }} $</p>
-                <a href="" data-el-text="Order" data-el-action="click">{{ shape.orderBtn }}</a>
+                <a href="" data-el-text="Order" data-el-text-en="OrderEn" data-el-text-cs="Objednat" data-el-action="click">{{ shape.orderBtn }}</a>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </section>
+    <section>
+      <details>
+        <summary>Epcot Center</summary>
+        <p>Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international pavilions, award-winning fireworks and seasonal special events.</p>
+      </details>
     </section>
   </div>
 </template>

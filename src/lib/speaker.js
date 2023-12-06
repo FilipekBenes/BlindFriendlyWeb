@@ -8,16 +8,33 @@ async function loadTranslations(i18n, lang) {
     i18n.store(translations);
     i18n.locale = lang;
     i18n.defaultLocale = 'en';
-}
+};
+
+//varibles for Speech to text
+var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+var SpeechGrammarList = SpeechGrammarList || window.webkitSpeechGrammarList;
+let currentEl = 0;
+
+let recognition = new SpeechRecognition();
+if (SpeechGrammarList) {
+    let speechRecognitionList = new SpeechGrammarList();
+    recognition.grammars = speechRecognitionList;
+};
+recognition.continuous = true;
+recognition.interimResults = false;
+recognition.maxAlternatives = 1;
 
 let synth = window.speechSynthesis;
 let isRun = false;
+let isRunSpeaker = false;
+let isRunManual = false;
 let isPsause = false;
 let rowCount = 0;
 
 const i18n = new I18n();
 let recognitionIsRun = false;
 let dynamicElemets;
+let dynamicElemetsLang;
 let speakerResult;
 
 let VOLUME = 1;
@@ -39,14 +56,15 @@ export function setTTS(
 };
 
 function startSpeek(text) {
-    if (!isPsause && !isRun) {
+    if (!isPsause && !isRunSpeaker) {
         synth.cancel();
-    }
+    };
     let voices = synth.getVoices();
     const utterThis = new SpeechSynthesisUtterance(text);
     for (let i = 0; i < voices.length; i++) {
         if (voices[i].lang.includes(LANG)) {
             utterThis.voice = voices[i];
+            recognition.lang = voices[i].lang;
         };
     };
     utterThis.volume = VOLUME;
@@ -62,37 +80,54 @@ function startSpeek(text) {
  * SpeechGlobal
  */
 function findAllAttributes() {
-    const rows = document.querySelectorAll("[data-speaker]");  // sp = speeking, el = element
-    console.log(rows);
-    if (rows != null) {
+    const rows = document.querySelectorAll("[data-speaker]");
+    if (rows.length > 0) {
         startSpeek(rows[rowCount].innerText);
         document.addEventListener("keydown", (event) => {
             if (event.which === 37) {   //arrowLeft
+                synth.cancel();
                 if (rowCount > 0) rowCount--, startSpeek(rows[rowCount].innerText);
                 else return;
             } if (event.which === 39) { //arrowRight
+                synth.cancel();
                 if (rowCount < rows.length) rowCount++, startSpeek(rows[rowCount].innerText);
                 else return;
             };
         });
-    } else startSpeek(i18n.t("globalSpeech.textNotFound"));
+    } else synth.cancel(), startSpeek(i18n.t("globalSpeech.textNotFound"));
 };
 
 document.addEventListener("keydown", (event) => {
     if (event.ctrlKey && event.key === "x") {
-        isRun = !isRun;
-        if (isRun) startSpeek(i18n.t("globalSpeech.ttsStart")), findAllAttributes();
+        synth.cancel();
+        recognition.abort();
+        isRunSpeaker = !isRunSpeaker;
+        if (isRunSpeaker) startSpeek(i18n.t("globalSpeech.ttsStart")), findAllAttributes();
         else startSpeek(i18n.t("globalSpeech.ttsEnd"));
     };
 });
 
 document.addEventListener("keydown", (event) => {
-    if (event.which === 32 && isRun) {
+    if (event.which === 32 && isRunSpeaker && !recognitionIsRun) {
         isPsause = !isPsause;
         if (isPsause) synth.pause();
         else synth.resume();
     };
-    if (event.which === 27 && isRun) synth.cancel();
+    if (event.which === 27) {
+        if (isRunSpeaker) {
+            synth.cancel();
+            isRunManual = false;
+        } else if (recognitionIsRun) {
+            recognition.abort();
+            recognitionIsRun = false;
+        } else if (isRunManual) {
+            synth.cancel();
+            isRunManual = false;
+        } else if (isRun) {
+            synth.cancel();
+            isRun = false;
+        };
+    };
 });
 
 
@@ -102,6 +137,8 @@ document.addEventListener("keydown", (event) => {
  */
 document.addEventListener("keydown", (event) => {
     if (event.ctrlKey && event.key === "i") {
+        synth.cancel();
+        recognition.abort();
         isRun = !isRun;
         if (isRun) startSpeek(i18n.t("speechFocus.ttsStart"));
         else startSpeek(i18n.t("speechFocus.ttsEnd"));
@@ -110,97 +147,89 @@ document.addEventListener("keydown", (event) => {
 
 document.addEventListener("focus", (event) => {
     if (!isRun) return;
-    startSpeek(event.target.textContent);
+
+    if (event.target.textContent != "") startSpeek(event.target.textContent);
+    else if (event.target.labels.length > 0) startSpeek(event.target.labels[0].textContent);
+    else startSpeek(i18n.t("speechFocus.notFound"));
 }, true);
 
 /**
  * 
  * SpeechToText
  */
-var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
-var SpeechGrammarList = SpeechGrammarList || window.webkitSpeechGrammarList;
-
-
-let recognition = new SpeechRecognition();
-if (SpeechGrammarList) {
-    let speechRecognitionList = new SpeechGrammarList();
-    recognition.grammars = speechRecognitionList;
-}
-recognition.continuous = true;
-recognition.lang = 'cs-CZ';
-recognition.interimResults = false;
-recognition.maxAlternatives = 1;
-
 window.addEventListener("load", (event) => {
     dynamicElemets = document.querySelectorAll("[data-el-text]");
 });
 
 document.addEventListener("keydown", (event) => {
     if (event.ctrlKey && event.key === "y" && !recognitionIsRun) {
+        synth.cancel();
         recognitionIsRun = !recognitionIsRun;
-        recognition.start();
         startSpeek(i18n.t("speechToText.sttStart"));
-        console.log(i18n.t("speechToText.sttStart"));
+        setTimeout(() => {
+            recognition.start();
+        }, "2000");
+        //console.log(i18n.t("speechToText.sttStart"));
+    } else if (recognitionIsRun) {
+        recognition.abort();
+        recognitionIsRun = false;
+        //console.log("abort");
     };
 });
 
 recognition.onresult = function (event) {
     speakerResult = event.results[0][0].transcript;
-    console.log('Result received: ' + speakerResult + '.');
-    console.log('Confidence: ' + event.results[0][0].confidence);
-    findResult();
+    console.log('Result received: ' + speakerResult);
+    //console.log('Confidence: ' + event.results[0][0].confidence);
+
     recognition.abort();
-    console.log('Speech ended!');
+    findResult();
 };
 
 recognition.onspeechend = () => {
     recognition.stop();
-    console.log("ENDDDDDD");
-};
-
-recognition.onnomatch = function (event) {
-    console.log("I didn't recognise.");
 };
 
 recognition.stop = function (event) {
     recognitionIsRun = false;
-    console.log("STOOP  = " + recognitionIsRun);
 };
 
 recognition.onerror = function (event) {
-    console.log('Chyba ' + event.error);
     recognition.stop();
 };
 
 function findResult() {
-    for (let i = 0; i < dynamicElemets.length; i++) {
-        //console.log(dynamicElemets[i].dataset.elText);
-        if (speakerResult.includes(dynamicElemets[i].dataset.elText)) {
-            if (dynamicElemets[i].dataset.elAction == undefined) dynamicElemets[i].dataset.elAction = "click";
-            console.log("Našli jsme stejný element: " + dynamicElemets[i].dataset.elText);
-            startSpeek("Našli jsme stejný element: " + dynamicElemets[i].dataset.elText + ". Chcete na tento element " + dynamicElemets[i].dataset.elAction + "? ANO nebo NE");
+    for (currentEl = 0; currentEl < dynamicElemets.length; currentEl++) {
+        //console.log(dynamicElemets[currentEl].dataset.elText);
+        const elTextLang = "data-el-text-" + LANG;
+        dynamicElemetsLang = dynamicElemets[currentEl].getAttribute(elTextLang);
+        //console.log(dynamicElemets[currentEl].getAttribute(elTextLang));
+        if (dynamicElemetsLang == null) dynamicElemetsLang = " ";
+        if (speakerResult.toLowerCase().includes(dynamicElemets[currentEl].dataset.elText.toLowerCase()) || speakerResult.toLowerCase().includes(dynamicElemetsLang[currentEl])) {
+            if (dynamicElemets[currentEl].dataset.elAction == undefined) dynamicElemets[currentEl].dataset.elAction = "click";
+            //console.log("Našli jsme stejný element: " + dynamicElemets[currentEl].dataset.elText);
+            startSpeek(i18n.t("speechToText.foundElement", { currentEl: dynamicElemets[currentEl].dataset.elText, elAction: dynamicElemets[currentEl].dataset.elAction }));
             response();
             return;
         } else {
-            startSpeek("Nenašli jsme žádný stejný element na této stránce");
-            console.log("Nenašli jsme žádný stejný element na této stránce");
+            startSpeek(i18n.t("speechToText.nothingFound"));
+            //console.log("Nenašli jsme žádný stejný element na této stránce");
         };
     };
-}
+};
 
 function response() {
     const eventHandler = (event) => {
         if (event.key === "y") {
-            console.log("Akce ANO byla provedena");
-            startSpeek("Okey");
-            return true;
-            callElAction(dynamicElemets[i]);
+            //console.log("Akce ANO byla provedena");
+            startSpeek(i18n.t("speechToText.actionYes"));
+            callElAction(dynamicElemets[currentEl]);
         } else if (event.key === "n") {
-            console.log("Akce NE byla provedena");
-            startSpeek("Okey");
+            //console.log("Akce NE byla provedena");
+            startSpeek(i18n.t("speechToText.actionNo"));
         } else {
-            //startSpeek("neznámý hlas, zkuste to znovu");
-            console.log("neznámý hlas, zkuste to znovu");
+            //console.log("neznámý hlas, zkuste to znovu");
+            startSpeek(i18n.t("speechToText.actionUnknownVoice"));
             response();
         };
     };
@@ -212,14 +241,14 @@ function callElAction(element) {
     let action = element.dataset.elAction;
     switch (action) {
         case "click":
-                element.click();
+            element.click();
             break;
         case "type":
 
             break;
         default:
             break;
-    }
+    };
 };
 
 /**
@@ -228,6 +257,22 @@ function callElAction(element) {
  */
 document.addEventListener("keydown", (event) => {
     if (event.ctrlKey && event.key === "m") {
-        startSpeek();
+        isRunManual = true;
+        startSpeek(i18n.t("guide.headline"));
+    };
+    if (isRunManual) {
+        switch (event.key) {
+            case "1":
+                startSpeek(i18n.t("guide.one"));
+                break;
+            case "2":
+                startSpeek(i18n.t("guide.two"));
+                break;
+            case "3":
+                startSpeek(i18n.t("guide.three"));
+                break;
+            default:
+                break;
+        };
     };
 });
