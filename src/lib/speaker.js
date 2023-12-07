@@ -1,4 +1,4 @@
-//Vliv implementace prvků přístupnosti do webu a knihovna s nadstandartními funkcemi
+//Influence of the implementation of accessibility features in the web and the library with extra features
 import { I18n } from "i18n-js";
 
 //function to define a translation
@@ -202,13 +202,17 @@ function findResult() {
     for (currentEl = 0; currentEl < dynamicElemets.length; currentEl++) {
         //console.log(dynamicElemets[currentEl].dataset.elText);
         const elTextLang = "data-el-text-" + LANG;
-        dynamicElemetsLang = dynamicElemets[currentEl].getAttribute(elTextLang);
+        dynamicElemetsLang = dynamicElemets[currentEl].getAttribute(elTextLang).toLowerCase();
         //console.log(dynamicElemets[currentEl].getAttribute(elTextLang));
         if (dynamicElemetsLang == null) dynamicElemetsLang = " ";
-        if (speakerResult.toLowerCase().includes(dynamicElemets[currentEl].dataset.elText.toLowerCase()) || speakerResult.toLowerCase().includes(dynamicElemetsLang[currentEl])) {
+        if (speakerResult.toLowerCase().includes(dynamicElemets[currentEl].dataset.elText.toLowerCase()) || speakerResult.toLowerCase().includes(dynamicElemetsLang)) {
             if (dynamicElemets[currentEl].dataset.elAction == undefined) dynamicElemets[currentEl].dataset.elAction = "click";
             //console.log("Našli jsme stejný element: " + dynamicElemets[currentEl].dataset.elText);
-            startSpeek(i18n.t("speechToText.foundElement", { currentEl: dynamicElemets[currentEl].dataset.elText, elAction: dynamicElemets[currentEl].dataset.elAction }));
+            if (speakerResult.toLowerCase().includes(dynamicElemetsLang)) {
+                startSpeek(i18n.t("speechToText.foundElement", { currentEl: dynamicElemetsLang, elAction: dynamicElemets[currentEl].dataset.elAction }));
+            } else if (speakerResult.toLowerCase().includes(dynamicElemets[currentEl].dataset.elText.toLowerCase())) {
+                startSpeek(i18n.t("speechToText.foundElement", { currentEl: dynamicElemets[currentEl].dataset.elText, elAction: dynamicElemets[currentEl].dataset.elAction }));
+            };
             response();
             return;
         } else {
