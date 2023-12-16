@@ -2,7 +2,7 @@
 import { I18n } from "i18n-js";
 
 //function to define a translation
-async function loadTranslations(i18n, lang) {
+async function loadCustomTranslations(i18n, lang) {
     const response = await import(`./locales/${lang}.json`);
     const translations = await response.default;
     i18n.store(translations);
@@ -52,7 +52,7 @@ export function setTTS(
     RATE = rate;
     PITCH = pitch;
     LANG = lang;
-    loadTranslations(i18n, LANG);
+    loadCustomTranslations(i18n, LANG);
 };
 
 function startSpeek(text) {
