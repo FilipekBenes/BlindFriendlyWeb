@@ -10,7 +10,7 @@ async function loadTranslations(i18n, lang) {
     i18n.defaultLocale = 'en';
 };
 
-//varibles for Speech to text
+//variables for Speech to text
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
 var SpeechGrammarList = SpeechGrammarList || window.webkitSpeechGrammarList;
 let currentEl = 0;
