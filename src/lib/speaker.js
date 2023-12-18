@@ -1,11 +1,12 @@
 //Influence of the implementation of accessibility features in the web and the library with extra features
 import { I18n } from "i18n-js";
-import * as langFiles from "./locales/exportLocales.js";
+//import * as langFiles from "./locales/exportLocales.js";
 
 //function to define a translation
 async function loadCustomTranslations(i18n, lang) {
-    console.log(langFiles[lang]);
-    i18n.store(langFiles[lang]);
+    const response = await import(`./locales/${lang}.json`);
+    const translations = await response.default;
+    i18n.store(translations);
     i18n.locale = lang;
     i18n.defaultLocale = 'en';
 };
