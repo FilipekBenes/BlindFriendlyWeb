@@ -83,11 +83,11 @@ function findAllAttributes() {
     if (rows.length > 0) {
         startSpeek(rows[rowCount].innerText);
         document.addEventListener("keydown", (event) => {
-            if (event.which === 37) {   //arrowLeft
+            if (event.key === "ArrowLeft") {   //arrowLeft
                 synth.cancel();
                 if (rowCount > 0) rowCount--, startSpeek(rows[rowCount].innerText);
                 else return;
-            } if (event.which === 39) { //arrowRight
+            } if (event.key === "ArrowRight") { //arrowRight
                 synth.cancel();
                 if (rowCount < rows.length) rowCount++, startSpeek(rows[rowCount].innerText);
                 else return;
@@ -97,7 +97,7 @@ function findAllAttributes() {
 };
 
 document.addEventListener("keydown", (event) => {
-    if (event.ctrlKey && event.shiftKey && event.key === "r") {
+    if (event.ctrlKey && event.shiftKey && event.key === "R") {
         synth.cancel();
         recognition.abort();
         isRunSpeaker = !isRunSpeaker;
@@ -135,7 +135,7 @@ document.addEventListener("keydown", (event) => {
  * SpeechFocus
  */
 document.addEventListener("keydown", (event) => {
-    if (event.ctrlKey && event.shiftKey && event.key === "f") {
+    if (event.ctrlKey && event.shiftKey && event.key === "F") {
         synth.cancel();
         recognition.abort();
         isRun = !isRun;
@@ -161,7 +161,7 @@ window.addEventListener("load", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
-    if (event.ctrlKey && event.shiftKey && event.key === "j" && !recognitionIsRun) {
+    if (event.ctrlKey && event.shiftKey && event.key === "J" && !recognitionIsRun) {
         synth.cancel();
         recognitionIsRun = !recognitionIsRun;
         startSpeek(i18n.t("speechToText.sttStart"));
@@ -259,7 +259,7 @@ function callElAction(element) {
  * SpeechManual
  */
 document.addEventListener("keydown", (event) => {
-    if (event.ctrlKey && event.shiftKey && event.key === "m") {
+    if (event.ctrlKey && event.shiftKey && event.key === "M") {
         isRunManual = true;
         startSpeek(i18n.t("guide.headline"));
     };
