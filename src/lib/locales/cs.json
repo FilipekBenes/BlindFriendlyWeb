@@ -21,9 +21,9 @@
         },
         "guide": {
             "headline": "Vítejte v průvodci. Pro vysvětlení 'řečníka' stiskněte jedna. Pro 'soustředěného řečníka' stiskněte dva. Pro 'ovládání webu hlasem' stiskněte tři.",
-            "one": "Řečník se zapíná pomocí klávesové zkratky 'Control + X'. Poté pomocí 'šipek doprava a doleva' můžete přeskakovat po odstavcích. 'Mezerník' funuguje pro pozastavení řečníka. Klávesa 'escape' funguje pro zavření a zrušení řečníka.",
-            "two": "Soustředěný řečník se zapína pomocí klávesové zkratky 'Control + I'. Poté pomocí klávesy 'TAB' překlikáváte mezi dynamickými elementy, klávesou 'ENTER' provede akci na daném elemntu. Pro vypnutí klikněte na klávesu 'ESCAPE'.",
-            "three": "Ovládání hlasem se zapíná pomocí klávesové zkratky 'Control + Y'. Poté řekněte název elementu, který chcete najít. Pokud neexistuje, 'řečník' Vám to řekne. Pokud existuje, 'řečník' se Vás zeptá, zda chcete provést akci daného elementu, či nikoliv. Ano znamená kliknutím na klávesu Y, ne na klávesu N."
+            "one": "Řečník se zapíná pomocí klávesové zkratky 'Control + shift + J'. Poté pomocí 'šipek doprava a doleva' můžete přeskakovat po odstavcích. 'Mezerník' funuguje pro pozastavení řečníka. Klávesa 'escape' funguje pro zavření a zrušení řečníka.",
+            "two": "Soustředěný řečník se zapína pomocí klávesové zkratky 'Control + shift + F'. Poté pomocí klávesy 'TAB' překlikáváte mezi dynamickými elementy, klávesou 'ENTER' provede akci na daném elemntu. Pro vypnutí klikněte na klávesu 'ESCAPE'.",
+            "three": "Ovládání hlasem se zapíná pomocí klávesové zkratky 'Control + shift + R'. Poté řekněte název elementu, který chcete najít. Pokud neexistuje, 'řečník' Vám to řekne. Pokud existuje, 'řečník' se Vás zeptá, zda chcete provést akci daného elementu, či nikoliv. Ano znamená kliknutím na klávesu Y, ne na klávesu N."
         }
     }
 }

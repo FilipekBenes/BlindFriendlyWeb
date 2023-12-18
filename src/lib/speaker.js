@@ -99,7 +99,7 @@ function findAllAttributes() {
 };
 
 document.addEventListener("keydown", (event) => {
-    if (event.ctrlKey && event.key === "x") {
+    if (event.ctrlKey && event.shiftKey && event.key === "r") {
         synth.cancel();
         recognition.abort();
         isRunSpeaker = !isRunSpeaker;
@@ -137,7 +137,7 @@ document.addEventListener("keydown", (event) => {
  * SpeechFocus
  */
 document.addEventListener("keydown", (event) => {
-    if (event.ctrlKey && event.key === "i") {
+    if (event.ctrlKey && event.shiftKey && event.key === "f") {
         synth.cancel();
         recognition.abort();
         isRun = !isRun;
@@ -163,7 +163,7 @@ window.addEventListener("load", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
-    if (event.ctrlKey && event.key === "y" && !recognitionIsRun) {
+    if (event.ctrlKey && event.shiftKey && event.key === "j" && !recognitionIsRun) {
         synth.cancel();
         recognitionIsRun = !recognitionIsRun;
         startSpeek(i18n.t("speechToText.sttStart"));
@@ -261,7 +261,7 @@ function callElAction(element) {
  * SpeechManual
  */
 document.addEventListener("keydown", (event) => {
-    if (event.ctrlKey && event.key === "m") {
+    if (event.ctrlKey && event.shiftKey && event.key === "m") {
         isRunManual = true;
         startSpeek(i18n.t("guide.headline"));
     };
