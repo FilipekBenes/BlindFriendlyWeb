@@ -97,7 +97,7 @@ function findAllAttributes() {
 };
 
 document.addEventListener("keydown", (event) => {
-    if (event.ctrlKey && event.shiftKey && event.key === "R") {
+    if (event.key === "2") {
         synth.cancel();
         recognition.abort();
         isRunSpeaker = !isRunSpeaker;
@@ -135,7 +135,7 @@ document.addEventListener("keydown", (event) => {
  * SpeechFocus
  */
 document.addEventListener("keydown", (event) => {
-    if (event.ctrlKey && event.shiftKey && event.key === "F") {
+    if (event.key === "1") {
         synth.cancel();
         recognition.abort();
         isRun = !isRun;
@@ -146,9 +146,10 @@ document.addEventListener("keydown", (event) => {
 
 document.addEventListener("focus", (event) => {
     if (!isRun) return;
-
-    if (event.target.textContent != "") startSpeek(event.target.textContent);
-    else if (event.target.labels.length > 0) startSpeek(event.target.labels[0].textContent);
+    if (event.target.getAttribute("aria-label") != null) event.target.getAttribute("aria-label");
+    else if (event.target.textContent != "") startSpeek(event.target.textContent);
+    else if (event.target.labels?.length > 0) startSpeek(event.target.labels[0].textContent);
+    else if (event.target.querySelector("[alt]") != null) startSpeek(event.target.querySelector("[alt]").getAttribute("alt"));
     else startSpeek(i18n.t("speechFocus.notFound"));
 }, true);
 
@@ -161,7 +162,7 @@ window.addEventListener("load", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
-    if (event.ctrlKey && event.shiftKey && event.key === "J" && !recognitionIsRun) {
+    if (event.key === "3" && !recognitionIsRun) {
         synth.cancel();
         recognitionIsRun = !recognitionIsRun;
         startSpeek(i18n.t("speechToText.sttStart"));
@@ -259,7 +260,7 @@ function callElAction(element) {
  * SpeechManual
  */
 document.addEventListener("keydown", (event) => {
-    if (event.ctrlKey && event.shiftKey && event.key === "M") {
+    if (event.key === "4") {
         isRunManual = true;
         startSpeek(i18n.t("guide.headline"));
     };

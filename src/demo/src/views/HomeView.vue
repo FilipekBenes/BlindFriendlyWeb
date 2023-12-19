@@ -5,6 +5,7 @@
         <h1>DEMO - Blind friendly lib</h1>
       </div>
     </div>
+    <section aria-label="Gallery">Gallery</section>
     <section class="section_aboutUs">
       <div>
         <h1 data-speaker>About us</h1>

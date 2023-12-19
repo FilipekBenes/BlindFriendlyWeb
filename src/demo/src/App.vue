@@ -2,9 +2,9 @@
   <div id="app">
     <header>
       <div class="container">
-        <div class="brand">
-          <div class="agriculture_icon_svg"></div>
-        </div>
+        <a class="brand" href="/" aria-label="LogoMoje">
+          <div class="agriculture_icon_svg" alt="Logo"></div>
+        </a>
           <nav>
               <router-link to="/" data-el-text="Home">Home</router-link>
               <router-link to="/order" data-el-text="I">Order</router-link>
