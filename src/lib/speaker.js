@@ -144,13 +144,47 @@ document.addEventListener("keydown", (event) => {
     };
 }, true);
 
+const fields = [
+    ["textContent", "title", "aria-label", "alt"],
+    ["labels", "title", "aria-label", "alt"],
+];
+
 document.addEventListener("focus", (event) => {
     if (!isRun) return;
-    if (event.target.getAttribute("aria-label") != null) event.target.getAttribute("aria-label");
-    else if (event.target.textContent != "") startSpeek(event.target.textContent);
-    else if (event.target.labels?.length > 0) startSpeek(event.target.labels[0].textContent);
-    else if (event.target.querySelector("[alt]") != null) startSpeek(event.target.querySelector("[alt]").getAttribute("alt"));
-    else startSpeek(i18n.t("speechFocus.notFound"));
+
+    const focusEl = event.target;
+    let newField = [];
+
+    switch (focusEl.nodeName) { //BUTTON, A, SUMMARY, INPUT
+        case "A":
+        case "BUTTON":
+        case "SUMMARY":
+            newField = fields[0];
+            break;
+        case "INPUT":
+            newField = fields[1];
+            break;
+        default:
+            newField = fields[1];
+            break;
+    };
+
+    for (let i = 0; i < newField.length; i++) {
+        const attribute = newField[i];
+        if (attribute === "labels" && focusEl.labels?.length > 0) {
+            startSpeek(focusEl.labels[0].textContent);
+            return;
+        } else if (attribute === "textContent" && focusEl.textContent != "") {
+            startSpeek(focusEl.textContent);
+            return;
+        } else if (focusEl.getAttribute(attribute) != null) {
+            startSpeek(focusEl.getAttribute(attribute));
+            return;
+        } else if (focusEl.querySelector("[" + attribute + "]") != null) {
+            startSpeek(focusEl.querySelector("[" + attribute + "]").getAttribute(attribute));
+            return;
+        } else startSpeek(i18n.t("speechFocus.notFound"));
+    };
 }, true);
 
 /**

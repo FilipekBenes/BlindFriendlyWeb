@@ -5,7 +5,6 @@
         <h1>DEMO - Blind friendly lib</h1>
       </div>
     </div>
-    <section aria-label="Gallery">Gallery</section>
     <section class="section_aboutUs">
       <div>
         <h1 data-speaker>About us</h1>
@@ -42,6 +41,8 @@
         </div>
       </div>
     </section>
+    <section aria-label="Gallery" tabindex="0">Gallery</section>
+    <a href="/" ><img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Arabska-gymnazium_vchod.jpg" style="max-width: 200px;" alt="můj obrázek"></a>
     <section>
       <details>
         <summary>Epcot Center</summary>
