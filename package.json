@@ -2,7 +2,7 @@
   "name": "blind-friendly-library",
   "version": "1.0.16",
   "description": "Blind friendly lib",
-  "main": "speaker.js",
+  "main": "src/lib/speaker.js",
   "dependencies": {
     "@vueuse/core": "^10.5.0",
     "i18n-js": "^4.3.2",

@@ -80,7 +80,9 @@ function startSpeek(text) {
  */
 function findAllAttributes() {
     const rows = document.querySelectorAll("[data-speaker]");
+    console.log(rows);
     if (rows.length > 0) {
+        console.log("Moje délka: "+ rows.length);
         startSpeek(rows[rowCount].innerText);
         document.addEventListener("keydown", (event) => {
             if (event.key === "ArrowLeft") {   //arrowLeft
@@ -89,7 +91,8 @@ function findAllAttributes() {
                 else return;
             } if (event.key === "ArrowRight") { //arrowRight
                 synth.cancel();
-                if (rowCount < rows.length) rowCount++, startSpeek(rows[rowCount].innerText);
+                console.log("rowCount: " + rowCount)
+                if (rowCount < rows.length) rowCount++, console.log(rowCount), startSpeek(rows[rowCount-1].innerText);
                 else return;
             };
         });
