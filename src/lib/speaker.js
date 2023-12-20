@@ -172,8 +172,8 @@ document.addEventListener("focus", (event) => {
 
     for (let i = 0; i < newField.length; i++) {
         const attribute = newField[i];
-        console.log(attribute);
         if (attribute === "labels" && focusEl.labels?.length > 0) {
+            if (focusEl.labels[0].textContent == "") continue;
             startSpeek(focusEl.labels[0].textContent);
             return;
         } else if (attribute === "textContent" && focusEl.textContent != "") {
@@ -181,7 +181,6 @@ document.addEventListener("focus", (event) => {
             return;
         } else if (focusEl.getAttribute(attribute) != null) {
             startSpeek(focusEl.getAttribute(attribute));
-            console.log(focusEl.getAttribute(attribute));
             return;
         };
     };
