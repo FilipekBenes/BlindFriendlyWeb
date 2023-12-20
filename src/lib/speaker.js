@@ -41,6 +41,7 @@ let RATE = 1;
 let PITCH = 1.2;
 let LANG = "en";
 
+//function settings
 export function setTTS(
     volume, // From 0 to 1
     rate, // From 0.1 to 10
@@ -54,6 +55,7 @@ export function setTTS(
     loadCustomTranslations(i18n, LANG);
 };
 
+//function to start the speaker
 function startSpeek(text) {
     if (!isPsause && !isRunSpeaker) {
         synth.cancel();
@@ -70,9 +72,18 @@ function startSpeek(text) {
     utterThis.pitch = PITCH;
     utterThis.rate = RATE;
     utterThis.lang = LANG;
-    return synth.speak(utterThis);
-};
+    synth.speak(utterThis);
 
+    //long text problem feature pause mid-speech
+    let r = setInterval(() => {
+        if (!synth.speaking) {
+            clearInterval(r);
+        } else {
+            synth.pause();
+            synth.resume();
+        }
+    }, 14000);
+};
 
 /**
  * 
@@ -82,8 +93,10 @@ function findAllAttributes() {
     const rows = document.querySelectorAll("[data-speaker]");
     console.log(rows);
     if (rows.length > 0) {
-        console.log("Moje délka: "+ rows.length);
+        console.log("Moje délka: " + rows.length);
         startSpeek(rows[rowCount].innerText);
+
+        //switching between elements for speaker
         document.addEventListener("keydown", (event) => {
             if (event.key === "ArrowLeft") {   //arrowLeft
                 synth.cancel();
@@ -92,13 +105,14 @@ function findAllAttributes() {
             } if (event.key === "ArrowRight") { //arrowRight
                 synth.cancel();
                 console.log("rowCount: " + rowCount)
-                if (rowCount < rows.length) rowCount++, console.log(rowCount), startSpeek(rows[rowCount-1].innerText);
+                if (rowCount < rows.length) rowCount++, console.log(rowCount), startSpeek(rows[rowCount - 1].innerText);
                 else return;
             };
         });
     } else synth.cancel(), startSpeek(i18n.t("globalSpeech.textNotFound"));
 };
 
+//start speechFocus
 document.addEventListener("keydown", (event) => {
     if (event.key === "2") {
         synth.cancel();
@@ -110,12 +124,15 @@ document.addEventListener("keydown", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
-    if (event.which === 32 && isRunSpeaker && !recognitionIsRun) {
+    //key to pause all speakers
+    if (event.code === "Space" && !recognitionIsRun) {
         isPsause = !isPsause;
         if (isPsause) synth.pause();
         else synth.resume();
     };
-    if (event.which === 27) {
+
+    //key to cancel all speakers
+    if (event.key === "Escape") {
         if (isRunSpeaker) {
             synth.cancel();
             isRunManual = false;
@@ -131,7 +148,6 @@ document.addEventListener("keydown", (event) => {
         };
     };
 });
-
 
 /**
  * 
@@ -180,11 +196,9 @@ document.addEventListener("focus", (event) => {
             startSpeek(focusEl.labels[0].textContent);
             return;
         } else if (attribute === "textContent" && focusEl.textContent != "") {
-            console.log("textContent" + focusEl.getAttribute(attribute));
             startSpeek(focusEl.textContent);
             return;
         } else if (focusEl.getAttribute(attribute) != null) {
-            console.log(focusEl.getAttribute(attribute));
             startSpeek(focusEl.getAttribute(attribute));
             return;
         };
@@ -219,7 +233,6 @@ document.addEventListener("keydown", (event) => {
     } else if (recognitionIsRun) {
         recognition.abort();
         recognitionIsRun = false;
-        //console.log("abort");
     };
 });
 
