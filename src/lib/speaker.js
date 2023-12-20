@@ -181,6 +181,7 @@ document.addEventListener("focus", (event) => {
             return;
         } else if (attribute === "textContent" && focusEl.textContent != "") {
             startSpeek(focusEl.textContent);
+            console.log("textContent" + focusEl.getAttribute(attribute));
             return;
         } else if (focusEl.getAttribute(attribute) != null) {
             console.log(focusEl.getAttribute(attribute));
