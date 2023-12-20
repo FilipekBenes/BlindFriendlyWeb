@@ -139,14 +139,14 @@ document.addEventListener("keydown", (event) => {
         synth.cancel();
         recognition.abort();
         isRun = !isRun;
-        if (isRun) startSpeek(i18n.t("speechFocus.ttsStart")), console.log(i18n.t("speechFocus.ttsStart"));
+        if (isRun) startSpeek(i18n.t("speechFocus.ttsStart"));
         else startSpeek(i18n.t("speechFocus.ttsEnd"));
     };
 }, true);
 
 const fields = [
-    ["textContent", "title", "aria-label", "alt"],
-    ["labels", "title", "aria-label", "alt"],
+    ["textContent", "title", "aria-label", "alt", "name"],
+    ["labels", "title", "placeholder", "aria-label", "alt"],
 ];
 
 document.addEventListener("focus", (event) => {
@@ -180,7 +180,12 @@ document.addEventListener("focus", (event) => {
         } else if (focusEl.getAttribute(attribute) != null) {
             startSpeek(focusEl.getAttribute(attribute));
             return;
-        } else if (focusEl.querySelector("[" + attribute + "]") != null) {
+        };
+    };
+    
+    for (let i = 0; i < newField.length; i++) {
+        const attribute = newField[i];
+        if (focusEl.querySelector("[" + attribute + "]") != null) {
             startSpeek(focusEl.querySelector("[" + attribute + "]").getAttribute(attribute));
             return;
         } else startSpeek(i18n.t("speechFocus.notFound"));
