@@ -41,7 +41,7 @@
         </div>
       </div>
     </section>
-    <section aria-label="Gallery" tabindex="0">Gallery</section>
+    <section aria-label="Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international pavilions, award-winning fireworks and seasonal special events.Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international pavilions, award-winning fireworks and seasonal special events" tabindex="0">Gallerysefoims</section>
     <input type="email" name="" placeholder="Muuuj emaiil..." id="">
     <a href="/" ><img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Arabska-gymnazium_vchod.jpg" style="max-width: 200px;" alt="můj obrázek"></a>
     <section>
