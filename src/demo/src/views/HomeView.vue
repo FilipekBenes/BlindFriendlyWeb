@@ -42,6 +42,7 @@
       </div>
     </section>
     <section aria-label="Gallery" tabindex="0">Gallery</section>
+    <input type="email" name="" placeholder="Muuuj emaiil..." id="">
     <a href="/" ><img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Arabska-gymnazium_vchod.jpg" style="max-width: 200px;" alt="můj obrázek"></a>
     <section>
       <details>

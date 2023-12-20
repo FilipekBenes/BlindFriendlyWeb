@@ -147,6 +147,7 @@ document.addEventListener("keydown", (event) => {
 const fields = [
     ["textContent", "title", "aria-label", "alt", "name"],
     ["labels", "title", "placeholder", "aria-label", "alt"],
+    ["aria-label", "textContent", "labels", "title", "placeholder", "alt"]
 ];
 
 document.addEventListener("focus", (event) => {
@@ -171,6 +172,7 @@ document.addEventListener("focus", (event) => {
 
     for (let i = 0; i < newField.length; i++) {
         const attribute = newField[i];
+        console.log(attribute);
         if (attribute === "labels" && focusEl.labels?.length > 0) {
             startSpeek(focusEl.labels[0].textContent);
             return;
@@ -179,10 +181,11 @@ document.addEventListener("focus", (event) => {
             return;
         } else if (focusEl.getAttribute(attribute) != null) {
             startSpeek(focusEl.getAttribute(attribute));
+            console.log(focusEl.getAttribute(attribute));
             return;
         };
     };
-    
+
     for (let i = 0; i < newField.length; i++) {
         const attribute = newField[i];
         if (focusEl.querySelector("[" + attribute + "]") != null) {
