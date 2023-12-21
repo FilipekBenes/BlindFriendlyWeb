@@ -4,9 +4,10 @@ import * as langFiles from "./locales/exportLocales.js";
 
 //function to define a translation
 async function loadCustomTranslations(i18n, lang) {
+    if (langFiles[lang] == null) lang = "en";
     i18n.store(langFiles[lang]);
     i18n.locale = lang;
-    i18n.defaultLocale = 'en';
+    i18n.defaultLocale = "en";
 };
 
 //variables for Speech to text
@@ -40,6 +41,7 @@ let VOLUME = 1;
 let RATE = 1;
 let PITCH = 1.2;
 let LANG = "en";
+let INTERVAL = null;
 
 //function settings
 export function setTTS(
@@ -60,6 +62,7 @@ function startSpeek(text) {
     if (!isPsause && !isRunSpeaker) {
         synth.cancel();
     };
+    clearInterval(INTERVAL);
     let voices = synth.getVoices();
     const utterThis = new SpeechSynthesisUtterance(text);
     for (let i = 0; i < voices.length; i++) {
@@ -75,14 +78,16 @@ function startSpeek(text) {
     synth.speak(utterThis);
 
     //long text problem feature pause mid-speech
-    let r = setInterval(() => {
+    INTERVAL = setInterval(() => {
         if (!synth.speaking) {
-            clearInterval(r);
+            clearInterval(INTERVAL);
         } else {
             synth.pause();
             synth.resume();
         }
     }, 14000);
+
+    utterThis.onend = (event) => { clearInterval(INTERVAL) };
 };
 
 /**
