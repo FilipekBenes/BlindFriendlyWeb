@@ -32,50 +32,50 @@ Additional features that are not among the standard ones, but can be particularl
 - CSS
 - HTML
 - Vue.js
-
+***
 ### Instalition and Usage
 - install library
 
 ```sh
 npm i blind-friendly-library
 ```
-- This library needs to be imported into the main.js file in the project, specifically importing the *speaker.js* file (*setTTS()* function).
+- This library needs to be imported into the main.js file in the project, specifically importing the *speaker.js* file (`setTTS()` function).
 
 ```js
 import { setTTS } from '../../lib/speaker.js';
 ```
-- Then run the *setTTS()* function and insert the parameters you have chosen to set the speaker's voice.
+- Then run the `setTTS()` function and insert the parameters you have chosen to set the speaker's voice.
 
 ```js
 setTTS(1,1,1.2,"en"); //(volume,rate,pitch,lang)
 ```
 
 - [demo](https://filipekbenes.github.io/BlindFriendlyWeb/)
-
+***
 ### Project Setup
 - The project has three main functions TTS (text to speech), SF (speech focus) and VC (voice control).
   
 **1. SF (speech focus)**
   - Speech focus works by itself right after installing the library.
   - Switched on with the **1** key.
-  - Switch between elements via the *TAB* key.
+  - Switch between elements via the `TAB` key.
 
 **2. TTS (text to speech)**
-  - Text to speech works using custom *data-speaker* attributes. These are added to the elements to be read.
+  - Text to speech works using custom `data-speaker` attributes. These are added to the elements to be read.
   
 ```html
 <p data-speaker>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
 ```
   - Text to speech is activated using the **2** key.
-  - Use the **arrows** (<-,->) to move between elements.
+  - Use the **arrows** `(<-,->)` to move between elements.
 
 **3. VC (voice control)**
-  - This function works by using custom attributes *data-el-text*, which are loaded when this function is run and then searches them to see if what the user said is in them. The value of the custom attribute specifies the name by which the element can be found.
+  - This function works by using custom attributes `data-el-text`, which are loaded when this function is run and then searches them to see if what the user said is in them. The value of the custom attribute specifies the name by which the element can be found.
 
   ```html
   <a data-el-text="Home">HOME</a>
   ```
-   ```html
+  ```html
   <a data-el-text="Home" data-el-text-en="Home" data-el-text-cs="Domů">HOME</a>
   ```
   - Speech to text is enabled using the **3** key and then the user enters what is to be done.
