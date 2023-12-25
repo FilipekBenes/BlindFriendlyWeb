@@ -47,10 +47,10 @@ import { setTTS } from '../../lib/speaker.js';
 - Then run the *setTTS()* function and insert the parameters you have chosen to set the speaker's voice.
 
 ```js
-setTTS(1,1,1.2,"en"); //volume,rate,pitch,lang
+setTTS(1,1,1.2,"en"); //(volume,rate,pitch,lang)
 ```
 
-- [demo](https://google.com)
+- [demo](https://filipekbenes.github.io/BlindFriendlyWeb/)
 
 ### Project Setup
 - The project has three main functions TTS (text to speech), SF (speech focus) and VC (voice control).
@@ -70,4 +70,9 @@ setTTS(1,1,1.2,"en"); //volume,rate,pitch,lang
   - Use the **arrows** (<-,->) to move between elements.
 
 **3. VC (voice control)**
-  - Speech to text
+  - This function works by using custom attributes *data-el-text*, which are loaded when this function is run and then searches them to see if what the user said is in them. The value of the custom attribute specifies the name by which the element can be found.
+
+  ```html
+  <a data-el-text="Home">HOME</a>
+  ```
+  - Speech to text is enabled using the **3** key and then the user enters what is to be done.
