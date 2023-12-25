@@ -1,5 +1,0 @@
-https://heropatterns.com/
-https://www.toppr.com/guides/maths/basic-geometrical-ideas/basic-geometrical-shapes/
-https://stackoverflow.com/questions/1599660/which-html-elements-can-receive-focus
-https://www.freecodecamp.org/news/how-to-create-and-publish-your-first-npm-package/
-
