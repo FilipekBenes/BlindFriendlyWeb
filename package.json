@@ -1,6 +1,6 @@
 {
   "name": "blind-friendly-library",
-  "version": "1.0.27",
+  "version": "1.0.28",
   "description": "Blind friendly lib",
   "main": "src/lib/speaker.js",
   "dependencies": {
@@ -29,7 +29,12 @@
     "url": "git+https://github.com/FilipekBenes/BlindFriendlyWeb.git"
   },
   "keywords": [
-    "Blind", "JS", "TTS", "VoiceControl", "SpeechFocus", "STT"
+    "Blind",
+    "JS",
+    "TTS",
+    "VoiceControl",
+    "SpeechFocus",
+    "STT"
   ],
   "author": "Filip Beneš",
   "license": "ISC",
