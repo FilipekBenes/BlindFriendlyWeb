@@ -2,7 +2,8 @@
 import { I18n } from "i18n-js";
 import * as langFiles from "./locales/exportLocales.js";
 
-//function to define a translation
+//  to define a translation
+//  dcsmcc
 async function loadCustomTranslations(i18n, lang) {
     if (langFiles[lang] == null) lang = "en";
     i18n.store(langFiles[lang]);

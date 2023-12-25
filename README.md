@@ -26,7 +26,6 @@ Additional features that are not among the standard ones, but can be particularl
     - [Technologies Used](#technologies-used)
     - [Instalition and Usage](#instalition-and-usage)
     - [Project Setup](#project-setup)
-    - [Compile for Development](#compile-for-development)
 
 ### Technologies Used
 - JS
@@ -35,21 +34,40 @@ Additional features that are not among the standard ones, but can be particularl
 - Vue.js
 
 ### Instalition and Usage
+- install library
 
 ```sh
 npm i blind-friendly-library
+```
+- This library needs to be imported into the main.js file in the project, specifically importing the *speaker.js* file (*setTTS()* function).
+
+```js
+import { setTTS } from '../../lib/speaker.js';
+```
+- Then run the *setTTS()* function and insert the parameters you have chosen to set the speaker's voice.
+
+```js
+setTTS(1,1,1.2,"en"); //volume,rate,pitch,lang
 ```
 
 - [demo](https://google.com)
 
 ### Project Setup
+- The project has three main functions TTS (text to speech), SF (speech focus) and VC (voice control).
+  
+**1. SF (speech focus)**
+  - Speech focus works by itself right after installing the library.
+  - Switched on with the **1** key.
+  - Switch between elements via the *TAB* key.
 
-```sh
-npm install
+**2. TTS (text to speech)**
+  - Text to speech works using custom *data-speaker* attributes. These are added to the elements to be read.
+  
+```html
+<p data-speaker>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
 ```
+  - Text to speech is activated using the **2** key.
+  - Use the **arrows** (<-,->) to move between elements.
 
-### Compile for Development
-
-```sh
-npm run dev
-```
+**3. VC (voice control)**
+  - Speech to text
