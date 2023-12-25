@@ -1,6 +1,0 @@
-@mixin svg($color, $url) {
-    background-color: $color;
-    -webkit-mask-image: $url;
-    mask-image: $url;
-    @extend %svg_tool;
-}
