@@ -20,7 +20,7 @@
     "dev": "vite ./src/demo",
     "build": "vite build ./src/demo",
     "preview": "vite preview ./src/demo",
-    "publish-patch": "git add . && git commit -m \"Upgrade to new versions\" && npm version patch && npm publish",
+    "publish-patch": "git add . && git commit -m \"Upgrade to new version\" && npm version patch && npm publish",
     "publish-minor": "npm version minor -m \"Upgrade to %s for reasons\" && npm publish",
     "publish-major": "npm version major -m \"Upgrade to %s for reasons\" && npm publish"
   },
