@@ -29,7 +29,7 @@
     "url": "git+https://github.com/FilipekBenes/BlindFriendlyWeb.git"
   },
   "keywords": [
-    "Blind"
+    "Blind", "JS", "TTS", "VoiceControl", "SpeechFocus", "STT"
   ],
   "author": "Filip Beneš",
   "license": "ISC",
