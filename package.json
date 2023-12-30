@@ -41,7 +41,7 @@
   "bugs": {
     "url": "https://github.com/FilipekBenes/BlindFriendlyWeb/issues"
   },
-  "homepage": "https://github.com/FilipekBenes/BlindFriendlyWeb#readme",
+  "homepage": "https://github.com/FilipekBenes/BlindFriendlyWeb",
   "files": [
     "src/lib/*"
   ]

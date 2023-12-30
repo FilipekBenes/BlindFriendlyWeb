@@ -39,15 +39,15 @@ Additional features that are not among the standard ones, but can be particularl
 ```sh
 npm i blind-friendly-library
 ```
-- This library needs to be imported into the main.js file in the project, specifically importing the *speaker.js* file (`setTTS()` function).
+- This library needs to be imported into the main.js file in the project, specifically importing the *speaker.js* file (`setBFL()` function).
 
 ```js
-import { setTTS } from '../../lib/speaker.js';
+import { setBFL } from '../../lib/speaker.js';
 ```
-- Then run the `setTTS()` function and insert the parameters you have chosen to set the speaker's voice.
+- Then run the `setBFL()` function and insert the parameters you have chosen to set the speaker's voice.
 
 ```js
-setTTS(1,1,1.2,"en"); //(volume,rate,pitch,lang)
+setBFL(1,1,1.2,"en"); //(volume,rate,pitch,lang)
 ```
 
 - [demo](https://filipekbenes.github.io/BlindFriendlyWeb/)

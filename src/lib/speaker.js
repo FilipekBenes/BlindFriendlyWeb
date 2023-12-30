@@ -45,7 +45,7 @@ let LANG = "en";
 let INTERVAL = null;
 
 //function settings
-export function setTTS(
+export function setBFL(
     volume, // From 0 to 1
     rate, // From 0.1 to 10
     pitch, // From 0 to 2
@@ -97,10 +97,9 @@ function startSpeek(text) {
  */
 function findAllAttributes() {
     const rows = document.querySelectorAll("[data-speaker]");
-    console.log(rows);
     if (rows.length > 0) {
-        console.log("Moje délka: " + rows.length);
         startSpeek(rows[rowCount].innerText);
+        console.log(rows[rowCount]);
 
         //switching between elements for speaker
         document.addEventListener("keydown", (event) => {
@@ -110,21 +109,20 @@ function findAllAttributes() {
                 else return;
             } if (event.key === "ArrowRight") { //arrowRight
                 synth.cancel();
-                console.log("rowCount: " + rowCount)
-                if (rowCount < rows.length) rowCount++, console.log(rowCount), startSpeek(rows[rowCount - 1].innerText);
+                if (rowCount < (rows.length - 1)) rowCount++,console.log(rows[rowCount]), startSpeek(rows[rowCount].innerText);
                 else return;
             };
         });
     } else synth.cancel(), startSpeek(i18n.t("globalSpeech.textNotFound"));
 };
 
-//start speechFocus
+//start speechGlobal
 document.addEventListener("keydown", (event) => {
     if (event.key === "2") {
         synth.cancel();
         recognition.abort();
         isRunSpeaker = !isRunSpeaker;
-        if (isRunSpeaker) startSpeek(i18n.t("globalSpeech.ttsStart")), findAllAttributes();
+        if (isRunSpeaker) rowCount = 0, startSpeek(i18n.t("globalSpeech.ttsStart")), findAllAttributes();
         else startSpeek(i18n.t("globalSpeech.ttsEnd"));
     };
 });

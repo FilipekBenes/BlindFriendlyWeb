@@ -26,7 +26,7 @@
     <section class="section_shapes">
       <div>
         <h1 data-speaker>Type of shapes</h1>
-        <div class="shapes">
+        <div data-speaker class="shapes">
           <div class="shape" v-for="shape in shape" :key="shape.id">
             <img :src="shape.img" alt="">
             <div>
@@ -46,7 +46,7 @@
     <a href="/" ><img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Arabska-gymnazium_vchod.jpg" style="max-width: 200px;" alt="můj obrázek"></a>
     <section>
       <details>
-        <summary>Epcot Center</summary>
+        <summary data-speaker>Epcot Center</summary>
         <p>Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international pavilions, award-winning fireworks and seasonal special events.</p>
       </details>
     </section>
