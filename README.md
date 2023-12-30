@@ -29,9 +29,7 @@ Additional features that are not among the standard ones, but can be particularl
 
 ### Technologies Used
 - JS
-- CSS
-- HTML
-- Vue.js
+- NODE.JS
 ***
 ### Instalition and Usage
 - install library
