@@ -4,25 +4,28 @@
   "description": "Blind friendly lib",
   "main": "src/lib/speaker.js",
   "dependencies": {
-    "@vueuse/core": "^10.5.0",
-    "i18n-js": "^4.3.2",
-    "vue": "^3.3.4",
-    "vue-router": "^4.2.4"
+    "i18n-js": "^4.3.2"
   },
   "devDependencies": {
+    "@vueuse/core": "^10.5.0",
     "@vitejs/plugin-vue": "^4.3.4",
     "sass": "^1.68.0",
     "sass-loader": "^10.4.1",
-    "vite": "^4.4.9"
+    "vite": "^4.4.9",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite ./src/demo",
     "build": "vite build ./src/demo",
     "preview": "vite preview ./src/demo",
-    "publish-patch": "git add . && git commit -m \"Upgrade to new version\" && npm version patch && npm publish",
-    "publish-minor": "npm version minor -m \"Upgrade to %s for reasons\" && npm publish",
-    "publish-major": "npm version major -m \"Upgrade to %s for reasons\" && npm publish"
+
+    "preversion": "git add . && git commit -m \"UPDATE: New commit\"",
+    "version-patch": "npm version patch -m \"Upgrade to version %s\"",
+    "version-minor": "npm version minor -m \"Upgrade to version %s\"",
+    "version-major": "npm version major -m \"Upgrade to version %s\"",
+    "postversion": "git push --follow-tags"
   },
   "repository": {
     "type": "git",
