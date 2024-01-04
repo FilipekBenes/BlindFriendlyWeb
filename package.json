@@ -1,6 +1,6 @@
 {
   "name": "blind-friendly-library",
-  "version": "1.0.32",
+  "version": "1.0.33",
   "description": "Blind friendly lib",
   "main": "src/lib/speaker.js",
   "dependencies": {
@@ -20,7 +20,6 @@
     "dev": "vite ./src/demo",
     "build": "vite build ./src/demo",
     "preview": "vite preview ./src/demo",
-
     "version-patch": "git add . && git commit -m \"UPDATE: New commit\" && npm version patch -m \"Upgrade to version %s\"",
     "version-minor": "npm version minor -m \"Upgrade to version %s\"",
     "version-major": "npm version major -m \"Upgrade to version %s\"",
