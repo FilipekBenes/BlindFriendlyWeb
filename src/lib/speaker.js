@@ -43,6 +43,10 @@ let RATE = 1;
 let PITCH = 1.2;
 let LANG = "en";
 let INTERVAL = null;
+let KSCFOCUS = 'event.ctrlKey && event.shiftKey && event.key === "1"';
+let KSCSPEAKER = 'event.ctrlKey && event.shiftKey && event.key === "2"';
+let KSCVOICEKONTROL = 'event.ctrlKey && event.shiftKey && event.key === "3"';
+
 
 //function settings
 export function setBFL(
@@ -55,7 +59,14 @@ export function setBFL(
     RATE = rate;
     PITCH = pitch;
     LANG = lang;
+
     loadCustomTranslations(i18n, LANG);
+};
+
+export function setKeyBFL(setObject) {
+    if(typeof setObject.kscFocus !== "undefined"){KSCFOCUS = setObject.kscFocus};
+    if(typeof setObject.kscSpeaker !== "undefined"){KSCSPEAKER = setObject.kscSpeaker};
+    if(typeof setObject.kscVoiceKontrol !== "undefined"){KSCVOICEKONTROL = setObject.kscVoiceKontrol};
 };
 
 //function to start the speaker
@@ -118,7 +129,8 @@ function findAllAttributes() {
 
 //start speechGlobal
 document.addEventListener("keydown", (event) => {
-    if (event.key === "2") {
+    if (eval(KSCSPEAKER)) {
+        console.log("esdcsdcddscycd");
         synth.cancel();
         recognition.abort();
         isRunSpeaker = !isRunSpeaker;
@@ -158,7 +170,7 @@ document.addEventListener("keydown", (event) => {
  * SpeechFocus
  */
 document.addEventListener("keydown", (event) => {
-    if (event.key === "1") {
+    if (eval(KSCFOCUS)) {
         synth.cancel();
         recognition.abort();
         isRun = !isRun;
@@ -226,7 +238,7 @@ window.addEventListener("load", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
-    if (event.key === "3" && !recognitionIsRun) {
+    if (eval(KSCVOICEKONTROL)  && !recognitionIsRun) {
         synth.cancel();
         recognitionIsRun = !recognitionIsRun;
         startSpeek(i18n.t("speechToText.sttStart"));
