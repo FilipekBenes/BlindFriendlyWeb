@@ -48,7 +48,7 @@ import { setBFL } from '../../lib/speaker.js';
 setBFL(1,1,1.2,"en"); //(volume,rate,pitch,lang)
 ```
 
-- [demo](https://filipekbenes.github.io/BlindFriendlyWeb/)
+- [demo](https://bfl-t6ps.onrender.com/)
 ***
 ### Project Setup
 - The project has three main functions TTS (text to speech), SF (speech focus) and VC (voice control).

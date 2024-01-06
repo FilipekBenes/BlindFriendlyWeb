@@ -47,6 +47,12 @@ let KSCFOCUS = 'event.ctrlKey && event.shiftKey && event.key === "1"';
 let KSCSPEAKER = 'event.ctrlKey && event.shiftKey && event.key === "2"';
 let KSCVOICEKONTROL = 'event.ctrlKey && event.shiftKey && event.key === "3"';
 
+let isInputFocused = false;
+document.addEventListener("keydown", (event) => {
+    const focusedElement = document.activeElement;
+    // Checks whether the input or text field is currently focused
+    isInputFocused = focusedElement.tagName === 'INPUT' || focusedElement.tagName === 'TEXTAREA';
+});
 
 //function settings
 export function setBFL(
@@ -64,9 +70,9 @@ export function setBFL(
 };
 
 export function setKeyBFL(setObject) {
-    if(typeof setObject.kscFocus !== "undefined"){KSCFOCUS = setObject.kscFocus};
-    if(typeof setObject.kscSpeaker !== "undefined"){KSCSPEAKER = setObject.kscSpeaker};
-    if(typeof setObject.kscVoiceKontrol !== "undefined"){KSCVOICEKONTROL = setObject.kscVoiceKontrol};
+    if (typeof setObject.kscFocus !== "undefined") { KSCFOCUS = setObject.kscFocus };
+    if (typeof setObject.kscSpeaker !== "undefined") { KSCSPEAKER = setObject.kscSpeaker };
+    if (typeof setObject.kscVoiceKontrol !== "undefined") { KSCVOICEKONTROL = setObject.kscVoiceKontrol };
 };
 
 //function to start the speaker
@@ -120,7 +126,7 @@ function findAllAttributes() {
                 else return;
             } if (event.key === "ArrowRight") { //arrowRight
                 synth.cancel();
-                if (rowCount < (rows.length - 1)) rowCount++,console.log(rows[rowCount]), startSpeek(rows[rowCount].innerText);
+                if (rowCount < (rows.length - 1)) rowCount++, console.log(rows[rowCount]), startSpeek(rows[rowCount].innerText);
                 else return;
             };
         });
@@ -129,8 +135,7 @@ function findAllAttributes() {
 
 //start speechGlobal
 document.addEventListener("keydown", (event) => {
-    if (eval(KSCSPEAKER)) {
-        console.log("esdcsdcddscycd");
+    if (!isInputFocused && eval(KSCSPEAKER)) {
         synth.cancel();
         recognition.abort();
         isRunSpeaker = !isRunSpeaker;
@@ -170,7 +175,7 @@ document.addEventListener("keydown", (event) => {
  * SpeechFocus
  */
 document.addEventListener("keydown", (event) => {
-    if (eval(KSCFOCUS)) {
+    if (!isInputFocused && eval(KSCFOCUS)) {
         synth.cancel();
         recognition.abort();
         isRun = !isRun;
@@ -238,7 +243,7 @@ window.addEventListener("load", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
-    if (eval(KSCVOICEKONTROL)  && !recognitionIsRun) {
+    if (!isInputFocused && eval(KSCVOICEKONTROL) && !recognitionIsRun) {
         synth.cancel();
         recognitionIsRun = !recognitionIsRun;
         startSpeek(i18n.t("speechToText.sttStart"));

@@ -7,7 +7,7 @@
         </a>
           <nav>
               <router-link to="/" data-el-text="Home">Home</router-link>
-              <router-link to="/order" data-el-text="I">Order</router-link>
+              <router-link to="/demo" data-el-text="I">Demo</router-link>
           </nav>
       </div>
     </header>
