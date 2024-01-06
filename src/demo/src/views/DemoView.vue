@@ -74,7 +74,7 @@ export default {
           name: "First",
           description: "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
           price: 100,
-          img: "src/assets/img/defaultImg.png",
+          img: "./defaultImg.png",
           orderBtn: "Order First",
         },
         {

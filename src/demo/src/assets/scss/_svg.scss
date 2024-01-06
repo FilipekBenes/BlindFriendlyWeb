@@ -1,3 +1,6 @@
 .agriculture_icon_svg {
     @include svg( #c9b8e0, url(../img/logo.svg));
 }
+.default_img {
+    @include svg( #c9b8e0, url(../img/defaultImg.png));
+}
