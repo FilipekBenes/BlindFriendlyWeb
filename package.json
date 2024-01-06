@@ -1,14 +1,14 @@
 {
   "name": "blind-friendly-library",
   "version": "1.0.36",
-  "description": "Blind friendly lib",
+  "description": "BFL - Blind friendly library",
   "main": "src/lib/speaker.js",
   "dependencies": {
     "i18n-js": "^4.3.2"
   },
   "devDependencies": {
-    "@vueuse/core": "^10.5.0",
     "@vitejs/plugin-vue": "^4.3.4",
+    "@vueuse/core": "^10.5.0",
     "sass": "^1.68.0",
     "sass-loader": "^10.4.1",
     "vite": "^4.4.9",
@@ -20,7 +20,7 @@
     "dev": "vite ./src/demo",
     "build": "vite build ./src/demo",
     "preview": "vite preview ./src/demo",
-    "version-patch": "git add . && git commit -m \"UPDATE: New commit\" && npm version patch -m \"Upgrade to version %s\"",
+    "version-patch": "git add . && git commit -m \"UPDATE: new demo\" && npm version patch -m \"Upgrade to version %s\"",
     "version-minor": "npm version minor -m \"Upgrade to version %s\"",
     "version-major": "npm version major -m \"Upgrade to version %s\"",
     "postversion": "git push --follow-tags"
@@ -38,7 +38,7 @@
     "STT"
   ],
   "author": "Filip Beneš",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/FilipekBenes/BlindFriendlyWeb/issues"
   },

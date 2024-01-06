@@ -1,71 +1,45 @@
 header {
-  background-color: #000;
-  height: 80px;
+  background-color: #1a1127ca;
+  height: 64px;
+  width: 100%;
   padding: 16px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
-
+  position: fixed;
   .container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-
     .brand div {
-      width: 64px;
-      height: 64px;
+      width: 48px;
+      height: 48px;
     }
-
     nav {
       display: flex;
       gap: 24px;
       align-items: center;
-
-      a {
-        color: #fff;
-        font-size: 16px;
-        text-decoration: none;
-
-        &:hover {
-          color: #aeaeae;
-        }
-      }
     }
   }
 }
-
-
 footer {
-  //background-color: #000;
-  height: 140px;
-  padding: 24px 24px;
-  color: #fff;
-
+  background-color: #1a1127;
+  padding: 8px;
+  color: #c9b8e0;
+  font-size: 14px;
   .container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
   }
 }
-
 .copyright {
   text-align: center;
 }
-
-a {
-  text-decoration: none;
-  color: #fff;
-  margin-right: 10px;
-
-  &:hover {
-    color: #aeaeae;
-  }
-}
-
 .contact {
-  color: #fff;
+  color: #c9b8e0;
   text-align: center;
   margin-top: 10px;
 }
