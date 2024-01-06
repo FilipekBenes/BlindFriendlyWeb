@@ -28,7 +28,7 @@
         <div data-speaker class="shapes">
           <div class="shape" v-for="shape in shape" :key="shape.id">
             <!-- <img :src="shape.img" alt=""> -->
-            <img src="../assets/img/defailtImg.png" alt="">
+            <img src="../assets/img/defaultImg.png" alt="">
             <div>
               <h2>{{ shape.name }}</h2>
               <p data-speaker>{{ shape.description }}</p>
