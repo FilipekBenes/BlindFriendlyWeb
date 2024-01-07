@@ -31,6 +31,7 @@ let isRunSpeaker = false;
 let isRunManual = false;
 let isPsause = false;
 let rowCount = 0;
+let errorSound = new Audio('./sounds/error.mp3');
 
 const i18n = new I18n();
 let recognitionIsRun = false;
@@ -135,6 +136,8 @@ function findAllAttributes() {
 
 //start speechGlobal
 document.addEventListener("keydown", (event) => {
+    errorSound.play();
+    //console.log(errorSound.play());
     if (!isInputFocused && eval(KSCSPEAKER)) {
         synth.cancel();
         recognition.abort();
