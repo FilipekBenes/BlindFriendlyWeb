@@ -129,13 +129,6 @@ export default {
       orderSubmitted: false
     };
   },
-  methods: {
-    submitOrder() {
-      // Zde můžete provést logiku pro odeslání objednávky, například volání API
-      // Po úspěšném odeslání objednávky můžete nastavit orderSubmitted na true
-      this.orderSubmitted = true;
-    }
-  }
 };
 </script>
   

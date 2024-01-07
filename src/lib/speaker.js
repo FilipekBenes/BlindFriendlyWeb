@@ -1,6 +1,7 @@
 //Influence of the implementation of accessibility features in the web and the library with extra features
 import { I18n } from "i18n-js";
 import * as langFiles from "./locales/exportLocales.js";
+import { default as importErrorSound } from "./sounds/error.mp3";
 
 //  to define a translation
 //  dcsmcc
@@ -31,7 +32,7 @@ let isRunSpeaker = false;
 let isRunManual = false;
 let isPsause = false;
 let rowCount = 0;
-let errorSound = new Audio('./sounds/error.mp3');
+let errorSound = new Audio(importErrorSound);
 
 const i18n = new I18n();
 let recognitionIsRun = false;
@@ -121,14 +122,14 @@ function findAllAttributes() {
 
         //switching between elements for speaker
         document.addEventListener("keydown", (event) => {
-            if (event.key === "ArrowLeft") {   //arrowLeft
+            if (event.key === "ArrowLeft" && isRunSpeaker) {   //arrowLeft
                 synth.cancel();
                 if (rowCount > 0) rowCount--, startSpeek(rows[rowCount].innerText);
-                else return;
-            } if (event.key === "ArrowRight") { //arrowRight
+                else return errorSound.play();
+            } if (event.key === "ArrowRight" && isRunSpeaker) { //arrowRight
                 synth.cancel();
                 if (rowCount < (rows.length - 1)) rowCount++, console.log(rows[rowCount]), startSpeek(rows[rowCount].innerText);
-                else return;
+                else return errorSound.play();;
             };
         });
     } else synth.cancel(), startSpeek(i18n.t("globalSpeech.textNotFound"));
@@ -136,8 +137,6 @@ function findAllAttributes() {
 
 //start speechGlobal
 document.addEventListener("keydown", (event) => {
-    errorSound.play();
-    //console.log(errorSound.play());
     if (!isInputFocused && eval(KSCSPEAKER)) {
         synth.cancel();
         recognition.abort();
@@ -159,7 +158,7 @@ document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
         if (isRunSpeaker) {
             synth.cancel();
-            isRunManual = false;
+            isRunSpeaker = false;
         } else if (recognitionIsRun) {
             recognition.abort();
             recognitionIsRun = false;

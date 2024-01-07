@@ -19,6 +19,8 @@ These features are mostly the W3C WAI standard. These include, for example, alte
 - A library with superior features
 Additional features that are not among the standard ones, but can be particularly beneficial for ordinary users and can also be implemented in general - independently of the web, the aim is to group them into a library. This library would then provide these functions with instructions on how to use them. Examples of these features include TTS (Text To Speech) or voice control.
 
+- [demo](https://bfl-t6ps.onrender.com/)
+
 ### Table of Contents
 - [Blind friendly lib](#blind-friendly-lib)
     - [Description](#description)
@@ -48,7 +50,6 @@ import { setBFL } from '../../lib/speaker.js';
 setBFL(1,1,1.2,"en"); //(volume,rate,pitch,lang)
 ```
 
-- [demo](https://bfl-t6ps.onrender.com/)
 ***
 ### Project Setup
 - The project has three main functions TTS (text to speech), SF (speech focus) and VC (voice control).
