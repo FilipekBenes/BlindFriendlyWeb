@@ -129,15 +129,24 @@ function findAllAttributes() {
         rowsArray.push("END");
         rowCount = 1;
     }, 1000);
-}
+};
 
 window.addEventListener('popstate', findAllAttributes);
 window.addEventListener('hashchange', findAllAttributes);
 document.addEventListener('click', function (e) {
-    console.log(e.target);  // to get the element
-    console.log(e.target.tagName);
-     if (event.target.tagName === 'A') findAllAttributes() });
-
+    let clickEl = e.target;
+    if (clickEl.tagName === 'A') findAllAttributes();
+    else {
+        while (clickEl) {
+            console.log(clickEl.tagName);
+            if (clickEl.tagName === 'A') {
+                findAllAttributes();
+                break;
+            }
+            clickEl = clickEl.parentNode;
+        }
+    }
+});
 function startSpeaker() {
     findAllAttributes();
     setTimeout(() => {
@@ -153,7 +162,7 @@ function startSpeaker() {
                 } if (event.key === "ArrowRight" && isRunSpeaker) { //arrowRight
                     synth.cancel();
                     if (rowCount === rowsArray.length) errorSound.play();
-                    else if (rowCount < (rowsArray.length - 1)) rowCount++, console.log(rowsArray[rowCount]), startSpeek(rowsArray[rowCount].innerText);
+                    else if (rowCount < (rowsArray.length - 1)) rowCount++, console.log(rowsArray[rowCount]);
                 };
             });
         } else synth.cancel(), startSpeek(i18n.t("globalSpeech.textNotFound"));
