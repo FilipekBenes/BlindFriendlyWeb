@@ -33,7 +33,7 @@ let isRunManual = false;
 let isPsause = false;
 let rowCount = 1;
 let errorSound = new Audio(importErrorSound);
-let speakerRows = [];
+let rowsArray = [];
 
 const i18n = new I18n();
 let recognitionIsRun = false;
@@ -122,7 +122,9 @@ function startSpeek(text) {
  */
 function findAllAttributes() {
     console.log('URL byla změněna:', window.location.href);
-    speakerRows = document.querySelectorAll("[data-speaker]");
+    const speakerRows = document.querySelectorAll("[data-speaker]");
+    rowsArray = Array.from(speakerRows);
+    console.log(rowsArray);
 }
 window.addEventListener('popstate', findAllAttributes);
 window.addEventListener('hashchange', findAllAttributes);
@@ -130,18 +132,18 @@ window.addEventListener('hashchange', findAllAttributes);
 document.addEventListener('click', function(event) {
     if (event.target.tagName === 'A') {
         findAllAttributes();
+        console.log("Klik na A");
     }
 });
 function startSpeaker() {
     findAllAttributes();
-    const rowsArray = Array.from(speakerRows);
-    console.log(rowsArray);
     if (rowsArray.length > 0) {
-        startSpeek(rowsArray[rowCount].innerText);
-        console.log(rowsArray[rowCount]);
         rowsArray.unshift("START");
         rowsArray.push("END");
-
+        console.log(rowCount);
+        startSpeek(rowsArray[rowCount].innerText);
+        console.log(rowsArray[rowCount]);
+        
 
         //switching between elements for speaker
         document.addEventListener("keydown", (event) => {
@@ -157,7 +159,6 @@ function startSpeaker() {
         });
     } else synth.cancel(), startSpeek(i18n.t("globalSpeech.textNotFound"));
 };
-
 //start speechGlobal
 document.addEventListener("keydown", (event) => {
     if (!isInputFocused && eval(KSCSPEAKER)) {
