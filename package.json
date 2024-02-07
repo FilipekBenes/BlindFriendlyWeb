@@ -1,6 +1,6 @@
 {
   "name": "blind-friendly-library",
-  "version": "1.0.47",
+  "version": "1.0.48",
   "description": "BFL - Blind friendly library",
   "main": "src/lib/speaker.js",
   "dependencies": {
