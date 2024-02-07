@@ -127,7 +127,7 @@ function findAllAttributes() {
         const speakerRows = document.querySelectorAll("[data-speaker]");
         rowsArray = Array.from(speakerRows);
         console.log(rowsArray);
-    }, 2000);
+    }, 1000);
 }
 window.addEventListener('popstate', findAllAttributes);
 window.addEventListener('hashchange', findAllAttributes);
@@ -141,27 +141,29 @@ document.addEventListener('click', function (event) {
 
 function startSpeaker() {
     findAllAttributes();
-    if (rowsArray.length > 0) {
-        rowsArray.unshift("START");
-        rowsArray.push("END");
-        console.log(rowCount);
-        startSpeek(rowsArray[rowCount].innerText);
-        console.log(rowsArray[rowCount]);
-        
+    setTimeout(() => {
+        if (rowsArray.length > 0) {
+            rowsArray.unshift("START");
+            rowsArray.push("END");
+            console.log(rowCount);
+            startSpeek(rowsArray[rowCount].innerText);
+            console.log(rowsArray[rowCount]);
 
-        //switching between elements for speaker
-        document.addEventListener("keydown", (event) => {
-            if (event.key === "ArrowLeft" && isRunSpeaker) {   //arrowLeft
-                synth.cancel();
-                if (rowCount === 0) errorSound.play();
-                else if (rowCount > 0) rowCount--, startSpeek(rowsArray[rowCount].innerText);
-            } if (event.key === "ArrowRight" && isRunSpeaker) { //arrowRight
-                synth.cancel();
-                if (rowCount === rowsArray.length) errorSound.play();
-                else if (rowCount < (rowsArray.length - 1)) rowCount++, console.log(rowsArray[rowCount]), startSpeek(rowsArray[rowCount].innerText);
-            };
-        });
-    } else synth.cancel(), startSpeek(i18n.t("globalSpeech.textNotFound"));
+
+            //switching between elements for speaker
+            document.addEventListener("keydown", (event) => {
+                if (event.key === "ArrowLeft" && isRunSpeaker) {   //arrowLeft
+                    synth.cancel();
+                    if (rowCount === 0) errorSound.play();
+                    else if (rowCount > 0) rowCount--, startSpeek(rowsArray[rowCount].innerText);
+                } if (event.key === "ArrowRight" && isRunSpeaker) { //arrowRight
+                    synth.cancel();
+                    if (rowCount === rowsArray.length) errorSound.play();
+                    else if (rowCount < (rowsArray.length - 1)) rowCount++, console.log(rowsArray[rowCount]), startSpeek(rowsArray[rowCount].innerText);
+                };
+            });
+        } else synth.cancel(), startSpeek(i18n.t("globalSpeech.textNotFound"));
+    }, 1000);
 };
 //start speechGlobal
 document.addEventListener("keydown", (event) => {
@@ -379,13 +381,13 @@ document.addEventListener("keydown", (event) => {
     if (isRunManual) {
         switch (event.key) {
             case "1":
-                startSpeek(i18n.t("guide.one", {speakerKey: kscSpeaker}));
+                startSpeek(i18n.t("guide.one", { speakerKey: kscSpeaker }));
                 break;
             case "2":
-                startSpeek(i18n.t("guide.two", {focusKey: kscFocus}));
+                startSpeek(i18n.t("guide.two", { focusKey: kscFocus }));
                 break;
             case "3":
-                startSpeek(i18n.t("guide.three", {voiceControlKey: kscVoiceControl}));
+                startSpeek(i18n.t("guide.three", { voiceControlKey: kscVoiceControl }));
                 break;
             default:
                 break;
