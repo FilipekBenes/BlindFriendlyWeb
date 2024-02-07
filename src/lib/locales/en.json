@@ -7,9 +7,9 @@
     },
     "guide": {
       "headline": "Welcome to the guide. \nPress one to explain 'speaker'. \nPress two for 'focused speaker'. \nPress three to 'control the web by voice'.",
-      "one": "The speaker is turned on using the keyboard shortcut 'Control shift J'. \nYou can then use the 'right and left arrows' to skip through the paragraphs. \n'Spacebar' functions to pause the speaker. \nThe 'escape' key works to close and cancel the speaker.",
-      "two": "The focus speaker is turned on using the keyboard shortcut 'Control shift F'. \nThen use the 'TAB' key to click between dynamic elements, the 'ENTER' key will perform an action on the given element. \nClick the 'ESCAPE' key to exit.",
-      "three": "Voice control is turned on with the keyboard shortcut 'Control shift R'. \nThen say the name of the element you want to find. \nIf there isn't, the 'speaker' will tell you. \nIf there is, the 'speaker' will ask you if you want to perform the action of the given element or not. \nYes means by clicking the Y key, not the N key."
+      "one": "The speaker is turned on using the keyboard shortcut {{speakerKey}}. \nYou can then use the 'right and left arrows' to skip through the paragraphs. \n'Spacebar' functions to pause the speaker. \nThe 'escape' key works to close and cancel the speaker.",
+      "two": "The focus speaker is turned on using the keyboard shortcut {{focusKey}}. \nThen use the 'TAB' key to click between dynamic elements, the 'ENTER' key will perform an action on the given element. \nClick the 'ESCAPE' key to exit.",
+      "three": "Voice control is turned on with the keyboard shortcut {{voiceControlKey}}. \nThen say the name of the element you want to find. \nIf there isn't, the 'speaker' will tell you. \nIf there is, the 'speaker' will ask you if you want to perform the action of the given element or not. \nYes means by clicking the Y key, not the N key."
     },
     "speechFocus": {
       "notFound": "Unknown element",

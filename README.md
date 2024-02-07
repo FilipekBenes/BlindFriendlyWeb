@@ -78,6 +78,3 @@ setBFL(1,1,1.2,"en"); //(volume,rate,pitch,lang)
   <a data-el-text="Home" data-el-text-en="Home" data-el-text-cs="Domů">HOME</a>
   ```
   - Speech to text is enabled using the **3** key and then the user enters what is to be done.
-
-
-Athor: Filip Beneš

@@ -31,7 +31,7 @@ let isRun = false;
 let isRunSpeaker = false;
 let isRunManual = false;
 let isPsause = false;
-let rowCount = 0;
+let rowCount = 1;
 let errorSound = new Audio(importErrorSound);
 
 const i18n = new I18n();
@@ -46,8 +46,12 @@ let PITCH = 1.2;
 let LANG = "en";
 let INTERVAL = null;
 let KSCFOCUS = 'event.ctrlKey && event.shiftKey && event.key === "1"';
+let kscFocus = " CTRL + SHIFT + 1 ";
 let KSCSPEAKER = 'event.ctrlKey && event.shiftKey && event.key === "2"';
-let KSCVOICEKONTROL = 'event.ctrlKey && event.shiftKey && event.key === "3"';
+let kscSpeaker = " CTRL + SHIFT + 2 ";
+let KSCVOICECONTROL = 'event.ctrlKey && event.shiftKey && event.key === "3"';
+let kscVoiceControl = " CTRL + SHIFT + 3 ";
+let KSCMANUAL = 'event.ctrlKey && event.shiftKey && event.key === "4"';
 
 let isInputFocused = false;
 document.addEventListener("keydown", (event) => {
@@ -74,7 +78,8 @@ export function setBFL(
 export function setKeyBFL(setObject) {
     if (typeof setObject.kscFocus !== "undefined") { KSCFOCUS = setObject.kscFocus };
     if (typeof setObject.kscSpeaker !== "undefined") { KSCSPEAKER = setObject.kscSpeaker };
-    if (typeof setObject.kscVoiceKontrol !== "undefined") { KSCVOICEKONTROL = setObject.kscVoiceKontrol };
+    if (typeof setObject.kscVoiceControl !== "undefined") { KSCVOICECONTROL = setObject.kscVoiceControl };
+    if (typeof setObject.kscManual !== "undefined") { KSCMANUAL = setObject.kscManual };
 };
 
 //function to start the speaker
@@ -119,17 +124,20 @@ function findAllAttributes() {
     if (rows.length > 0) {
         startSpeek(rows[rowCount].innerText);
         console.log(rows[rowCount]);
+        rows.unshift("START")
+        rows.push("END")
+
 
         //switching between elements for speaker
         document.addEventListener("keydown", (event) => {
             if (event.key === "ArrowLeft" && isRunSpeaker) {   //arrowLeft
                 synth.cancel();
-                if (rowCount > 0) rowCount--, startSpeek(rows[rowCount].innerText);
-                else return errorSound.play();
+                if (rowCount === 0) errorSound.play();
+                else if (rowCount > 0) rowCount--, startSpeek(rows[rowCount].innerText);
             } if (event.key === "ArrowRight" && isRunSpeaker) { //arrowRight
                 synth.cancel();
-                if (rowCount < (rows.length - 1)) rowCount++, console.log(rows[rowCount]), startSpeek(rows[rowCount].innerText);
-                else return errorSound.play();;
+                if (rowCount === rows.length) errorSound.play();
+                else if (rowCount < (rows.length - 1)) rowCount++, console.log(rows[rowCount]), startSpeek(rows[rowCount].innerText);
             };
         });
     } else synth.cancel(), startSpeek(i18n.t("globalSpeech.textNotFound"));
@@ -141,7 +149,7 @@ document.addEventListener("keydown", (event) => {
         synth.cancel();
         recognition.abort();
         isRunSpeaker = !isRunSpeaker;
-        if (isRunSpeaker) rowCount = 0, startSpeek(i18n.t("globalSpeech.ttsStart")), findAllAttributes();
+        if (isRunSpeaker) rowCount = 1, startSpeek(i18n.t("globalSpeech.ttsStart")), findAllAttributes();
         else startSpeek(i18n.t("globalSpeech.ttsEnd"));
     };
 });
@@ -245,7 +253,7 @@ window.addEventListener("load", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
-    if (!isInputFocused && eval(KSCVOICEKONTROL) && !recognitionIsRun) {
+    if (!isInputFocused && eval(KSCVOICECONTROL) && !recognitionIsRun) {
         synth.cancel();
         recognitionIsRun = !recognitionIsRun;
         startSpeek(i18n.t("speechToText.sttStart"));
@@ -282,13 +290,14 @@ recognition.onerror = function (event) {
 
 function findResult() {
     for (currentEl = 0; currentEl < dynamicElemets.length; currentEl++) {
-        //console.log(dynamicElemets[currentEl].dataset.elText);
         const elTextLang = "data-el-text-" + LANG;
-        dynamicElemetsLang = dynamicElemets[currentEl].getAttribute(elTextLang).toLowerCase();
-        //console.log(dynamicElemets[currentEl].getAttribute(elTextLang));
-        if (dynamicElemetsLang == null) dynamicElemetsLang = " ";
+        if (dynamicElemets[currentEl].getAttribute(elTextLang) == null) dynamicElemetsLang = " ";
+        else dynamicElemetsLang = dynamicElemets[currentEl].getAttribute(elTextLang).toLowerCase();
+
+        console.log(dynamicElemets[currentEl].dataset.elAction);
+
         if (speakerResult.toLowerCase().includes(dynamicElemets[currentEl].dataset.elText.toLowerCase()) || speakerResult.toLowerCase().includes(dynamicElemetsLang)) {
-            if (dynamicElemets[currentEl].dataset.elAction == undefined) dynamicElemets[currentEl].dataset.elAction = "click";
+            if (dynamicElemets[currentEl].dataset.elAction == undefined) dynamicElemets[currentEl].dataset.elAction = "click", console.log(dynamicElemets[currentEl].dataset);
             //console.log("Našli jsme stejný element: " + dynamicElemets[currentEl].dataset.elText);
             if (speakerResult.toLowerCase().includes(dynamicElemetsLang)) {
                 startSpeek(i18n.t("speechToText.foundElement", { currentEl: dynamicElemetsLang, elAction: dynamicElemets[currentEl].dataset.elAction }));
@@ -327,6 +336,7 @@ function callElAction(element) {
     let action = element.dataset.elAction;
     switch (action) {
         case "click":
+        case "kliknout":
             element.click();
             break;
         case "type":
@@ -342,20 +352,20 @@ function callElAction(element) {
  * SpeechManual
  */
 document.addEventListener("keydown", (event) => {
-    if (event.key === "4") {
+    if (eval(KSCMANUAL)) {
         isRunManual = true;
         startSpeek(i18n.t("guide.headline"));
     };
     if (isRunManual) {
         switch (event.key) {
             case "1":
-                startSpeek(i18n.t("guide.one"));
+                startSpeek(i18n.t("guide.one", {speakerKey: kscSpeaker}));
                 break;
             case "2":
-                startSpeek(i18n.t("guide.two"));
+                startSpeek(i18n.t("guide.two", {focusKey: kscFocus}));
                 break;
             case "3":
-                startSpeek(i18n.t("guide.three"));
+                startSpeek(i18n.t("guide.three", {voiceControlKey: kscVoiceControl}));
                 break;
             default:
                 break;
