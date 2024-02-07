@@ -124,24 +124,20 @@ function findAllAttributes() {
     setTimeout(() => {
         const speakerRows = document.querySelectorAll("[data-speaker]");
         rowsArray = Array.from(speakerRows);
+        rowsArray.unshift("START");
+        rowsArray.push("END");
         rowCount = 1;
     }, 1000);
 }
+
 window.addEventListener('popstate', findAllAttributes);
 window.addEventListener('hashchange', findAllAttributes);
-
-document.addEventListener('click', function (event) {
-    if (event.target.tagName === 'A') {
-        findAllAttributes();
-    }
-});
+document.addEventListener('click', function (event) { if (event.target.tagName === 'A') findAllAttributes() });
 
 function startSpeaker() {
     findAllAttributes();
     setTimeout(() => {
-        if (rowsArray.length > 0) {
-            rowsArray.unshift("START");
-            rowsArray.push("END");
+        if (rowsArray.length > 2) {
             startSpeek(rowsArray[rowCount].innerText);
 
             //switching between elements for speaker
@@ -159,6 +155,7 @@ function startSpeaker() {
         } else synth.cancel(), startSpeek(i18n.t("globalSpeech.textNotFound"));
     }, 1000);
 };
+
 //start speechGlobal
 document.addEventListener("keydown", (event) => {
     if (!isInputFocused && eval(KSCSPEAKER)) {
