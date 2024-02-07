@@ -121,12 +121,10 @@ function startSpeek(text) {
  * SpeechGlobal
  */
 function findAllAttributes() {
-    console.log('URL byla změněna:', window.location.href);
-    console.log("Něco se děje");
     setTimeout(() => {
         const speakerRows = document.querySelectorAll("[data-speaker]");
         rowsArray = Array.from(speakerRows);
-        console.log(rowsArray);
+        rowCount = 1;
     }, 1000);
 }
 window.addEventListener('popstate', findAllAttributes);
@@ -135,7 +133,6 @@ window.addEventListener('hashchange', findAllAttributes);
 document.addEventListener('click', function (event) {
     if (event.target.tagName === 'A') {
         findAllAttributes();
-        console.log("Klik na A");
     }
 });
 
@@ -145,10 +142,7 @@ function startSpeaker() {
         if (rowsArray.length > 0) {
             rowsArray.unshift("START");
             rowsArray.push("END");
-            console.log(rowCount);
             startSpeek(rowsArray[rowCount].innerText);
-            console.log(rowsArray[rowCount]);
-
 
             //switching between elements for speaker
             document.addEventListener("keydown", (event) => {
