@@ -33,6 +33,7 @@ let isRunManual = false;
 let isPsause = false;
 let rowCount = 1;
 let errorSound = new Audio(importErrorSound);
+let speakerRows;
 
 const i18n = new I18n();
 let recognitionIsRun = false;
@@ -120,12 +121,24 @@ function startSpeek(text) {
  * SpeechGlobal
  */
 function findAllAttributes() {
-    const rows = document.querySelectorAll("[data-speaker]");
-    if (rows.length > 0) {
-        startSpeek(rows[rowCount].innerText);
-        console.log(rows[rowCount]);
-        rows.unshift("START")
-        rows.push("END")
+    console.log('URL byla změněna:', window.location.href);
+    speakerRows = document.querySelectorAll("[data-speaker]");
+}
+window.addEventListener('popstate', findAllAttributes);
+window.addEventListener('hashchange', findAllAttributes);
+
+document.addEventListener('click', function(event) {
+    if (event.target.tagName === 'A') {
+        findAllAttributes();
+    }
+});
+function startSpeaker() {
+    findAllAttributes();
+    if (speakerRows.length > 0) {
+        startSpeek(speakerRows[rowCount].innerText);
+        console.log(speakerRows[rowCount]);
+        speakerRows.unshift("START")
+        speakerRows.push("END")
 
 
         //switching between elements for speaker
@@ -133,11 +146,11 @@ function findAllAttributes() {
             if (event.key === "ArrowLeft" && isRunSpeaker) {   //arrowLeft
                 synth.cancel();
                 if (rowCount === 0) errorSound.play();
-                else if (rowCount > 0) rowCount--, startSpeek(rows[rowCount].innerText);
+                else if (rowCount > 0) rowCount--, startSpeek(speakerRows[rowCount].innerText);
             } if (event.key === "ArrowRight" && isRunSpeaker) { //arrowRight
                 synth.cancel();
-                if (rowCount === rows.length) errorSound.play();
-                else if (rowCount < (rows.length - 1)) rowCount++, console.log(rows[rowCount]), startSpeek(rows[rowCount].innerText);
+                if (rowCount === speakerRows.length) errorSound.play();
+                else if (rowCount < (speakerRows.length - 1)) rowCount++, console.log(speakerRows[rowCount]), startSpeek(speakerRows[rowCount].innerText);
             };
         });
     } else synth.cancel(), startSpeek(i18n.t("globalSpeech.textNotFound"));
@@ -149,7 +162,7 @@ document.addEventListener("keydown", (event) => {
         synth.cancel();
         recognition.abort();
         isRunSpeaker = !isRunSpeaker;
-        if (isRunSpeaker) rowCount = 1, startSpeek(i18n.t("globalSpeech.ttsStart")), findAllAttributes();
+        if (isRunSpeaker) rowCount = 1, startSpeek(i18n.t("globalSpeech.ttsStart")), startSpeaker();
         else startSpeek(i18n.t("globalSpeech.ttsEnd"));
     };
 });
