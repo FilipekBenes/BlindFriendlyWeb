@@ -121,6 +121,7 @@ function startSpeek(text) {
  * SpeechGlobal
  */
 function findAllAttributes() {
+    console.log("změneneno");
     setTimeout(() => {
         const speakerRows = document.querySelectorAll("[data-speaker]");
         rowsArray = Array.from(speakerRows);
