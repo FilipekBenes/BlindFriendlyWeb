@@ -133,7 +133,10 @@ function findAllAttributes() {
 
 window.addEventListener('popstate', findAllAttributes);
 window.addEventListener('hashchange', findAllAttributes);
-document.addEventListener('click', function (event) { if (event.target.tagName === 'A') findAllAttributes() });
+document.addEventListener('click', function (e) {
+    console.log(e.target);  // to get the element
+    console.log(e.target.tagName);
+     if (event.target.tagName === 'A') findAllAttributes() });
 
 function startSpeaker() {
     findAllAttributes();
