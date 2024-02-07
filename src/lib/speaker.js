@@ -33,7 +33,7 @@ let isRunManual = false;
 let isPsause = false;
 let rowCount = 1;
 let errorSound = new Audio(importErrorSound);
-let speakerRows;
+let speakerRows = [];
 
 const i18n = new I18n();
 let recognitionIsRun = false;
@@ -134,11 +134,13 @@ document.addEventListener('click', function(event) {
 });
 function startSpeaker() {
     findAllAttributes();
-    if (speakerRows.length > 0) {
-        startSpeek(speakerRows[rowCount].innerText);
-        console.log(speakerRows[rowCount]);
-        speakerRows.unshift("START")
-        speakerRows.push("END")
+    const rowsArray = Array.from(speakerRows);
+    console.log(rowsArray);
+    if (rowsArray.length > 0) {
+        startSpeek(rowsArray[rowCount].innerText);
+        console.log(rowsArray[rowCount]);
+        rowsArray.unshift("START");
+        rowsArray.push("END");
 
 
         //switching between elements for speaker
@@ -146,11 +148,11 @@ function startSpeaker() {
             if (event.key === "ArrowLeft" && isRunSpeaker) {   //arrowLeft
                 synth.cancel();
                 if (rowCount === 0) errorSound.play();
-                else if (rowCount > 0) rowCount--, startSpeek(speakerRows[rowCount].innerText);
+                else if (rowCount > 0) rowCount--, startSpeek(rowsArray[rowCount].innerText);
             } if (event.key === "ArrowRight" && isRunSpeaker) { //arrowRight
                 synth.cancel();
-                if (rowCount === speakerRows.length) errorSound.play();
-                else if (rowCount < (speakerRows.length - 1)) rowCount++, console.log(speakerRows[rowCount]), startSpeek(speakerRows[rowCount].innerText);
+                if (rowCount === rowsArray.length) errorSound.play();
+                else if (rowCount < (rowsArray.length - 1)) rowCount++, console.log(rowsArray[rowCount]), startSpeek(rowsArray[rowCount].innerText);
             };
         });
     } else synth.cancel(), startSpeek(i18n.t("globalSpeech.textNotFound"));
