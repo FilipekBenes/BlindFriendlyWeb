@@ -122,19 +122,23 @@ function startSpeek(text) {
  */
 function findAllAttributes() {
     console.log('URL byla změněna:', window.location.href);
-    const speakerRows = document.querySelectorAll("[data-speaker]");
-    rowsArray = Array.from(speakerRows);
-    console.log(rowsArray);
+    console.log("Něco se děje");
+    setTimeout(() => {
+        const speakerRows = document.querySelectorAll("[data-speaker]");
+        rowsArray = Array.from(speakerRows);
+        console.log(rowsArray);
+    }, 2000);
 }
 window.addEventListener('popstate', findAllAttributes);
 window.addEventListener('hashchange', findAllAttributes);
 
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
     if (event.target.tagName === 'A') {
         findAllAttributes();
         console.log("Klik na A");
     }
 });
+
 function startSpeaker() {
     findAllAttributes();
     if (rowsArray.length > 0) {
