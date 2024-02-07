@@ -121,7 +121,6 @@ function startSpeek(text) {
  * SpeechGlobal
  */
 function findAllAttributes() {
-    console.log("změneneno");
     setTimeout(() => {
         const speakerRows = document.querySelectorAll("[data-speaker]");
         rowsArray = Array.from(speakerRows);
@@ -162,7 +161,7 @@ function startSpeaker() {
                 } if (event.key === "ArrowRight" && isRunSpeaker) { //arrowRight
                     synth.cancel();
                     if (rowCount === rowsArray.length) errorSound.play();
-                    else if (rowCount < (rowsArray.length - 1)) rowCount++, console.log(rowsArray[rowCount]);
+                    else if (rowCount < (rowsArray.length - 1)) rowCount++, startSpeek(rowsArray[rowCount].innerText);
                 };
             });
         } else synth.cancel(), startSpeek(i18n.t("globalSpeech.textNotFound"));
