@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
-import { setBFL, setKeyBFL } from '../../lib/speaker';
+import { setBFL, setKeyBFL } from '../../lib/index';
 
 const app = createApp(App);
 app.use(router);
@@ -13,5 +13,5 @@ const myKey = {
     kscVoiceControl: 'event.key === "8"',
     kscManual: 'event.key === "7"',
 };
-setBFL(1,1,1.2,"cs");
+setBFL(1,1,1.2,"en");
 setKeyBFL(myKey);

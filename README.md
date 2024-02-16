@@ -56,7 +56,7 @@ setBFL(1,1,1.2,"en"); //(volume,rate,pitch,lang)
   
 **1. SF (speech focus)**
   - Speech focus works by itself right after installing the library.
-  - Switched on with the **1** key.
+  - Switched on with the **CTRL+SHIFT+1** key.
   - Switch between elements via the `TAB` key.
 
 **2. TTS (text to speech)**
@@ -65,7 +65,7 @@ setBFL(1,1,1.2,"en"); //(volume,rate,pitch,lang)
 ```html
 <p data-speaker>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
 ```
-  - Text to speech is activated using the **2** key.
+  - Text to speech is activated using the **CTRL+SHIFT+2** key.
   - Use the **arrows** `(<-,->)` to move between elements.
 
 **3. VC (voice control)**
@@ -81,4 +81,6 @@ setBFL(1,1,1.2,"en"); //(volume,rate,pitch,lang)
    ```html
   <a data-el-text="Home" data-el-action="click">HOME</a>
   ```
-  - Speech to text is enabled using the **3** key and then the user enters what is to be done.
+  - Speech to text is enabled using the **CTRL+SHIFT+3** key and then the user enters what is to be done.
+**4. Manual**
+  - Press **CTRL+SHIFT+4** to turn on the guide.
