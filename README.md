@@ -42,7 +42,7 @@ npm i blind-friendly-library
 - This library needs to be imported into the main.js file in the project, specifically importing the *speaker.js* file (`setBFL()` function).
 
 ```js
-import { setBFL } from '../../lib/speaker.js';
+import { setBFL } from '../../lib/index.js';
 ```
 - Then run the `setBFL()` function and insert the parameters you have chosen to set the speaker's voice.
 

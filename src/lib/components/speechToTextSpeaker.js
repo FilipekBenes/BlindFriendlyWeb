@@ -18,7 +18,6 @@ document.addEventListener("keydown", (event) => {
         setTimeout(() => {
             myVariables.recognition.start();
         }, "2000");
-        //console.log(myVariables.i18n.t("speechToText.sttStart"));
     } else if (myVariables.recognitionIsRun) {
         myVariables.recognition.abort();
         myVariables.recognitionIsRun = false;
@@ -27,7 +26,7 @@ document.addEventListener("keydown", (event) => {
 
 myVariables.recognition.onresult = function (event) {
     myVariables.speakerResult = event.results[0][0].transcript;
-    console.log('Result received: ' + myVariables.speakerResult);
+    //console.log('Result received: ' + myVariables.speakerResult);
     //console.log('Confidence: ' + event.results[0][0].confidence);
 
     myVariables.recognition.abort();
@@ -52,10 +51,10 @@ function findResult() {
         if (myVariables.dynamicElemets[myVariables.currentEl].getAttribute(elTextLang) == null) myVariables.dynamicElemetsLang = " ";
         else myVariables.dynamicElemetsLang = myVariables.dynamicElemets[myVariables.currentEl].getAttribute(elTextLang).toLowerCase();
 
-        console.log(myVariables.dynamicElemets[myVariables.currentEl].dataset.elAction);
+        //console.log(myVariables.dynamicElemets[myVariables.currentEl].dataset.elAction);
 
         if (myVariables.speakerResult.toLowerCase().includes(myVariables.dynamicElemets[myVariables.currentEl].dataset.elText.toLowerCase()) || myVariables.speakerResult.toLowerCase().includes(myVariables.dynamicElemetsLang)) {
-            if (myVariables.dynamicElemets[myVariables.currentEl].dataset.elAction == undefined) myVariables.dynamicElemets[myVariables.currentEl].dataset.elAction = "click", console.log(myVariables.dynamicElemets[myVariables.currentEl].dataset);
+            if (myVariables.dynamicElemets[myVariables.currentEl].dataset.elAction == undefined) myVariables.dynamicElemets[myVariables.currentEl].dataset.elAction = "click";
             //console.log("Našli jsme stejný element: " + myVariables.dynamicElemets[myVariables.currentEl].dataset.elText);
             if (myVariables.speakerResult.toLowerCase().includes(myVariables.dynamicElemetsLang)) {
                 startSpeek(myVariables.i18n.t("speechToText.foundElement", { currentEl: myVariables.dynamicElemetsLang, elAction: myVariables.dynamicElemets[myVariables.currentEl].dataset.elAction }));
@@ -66,7 +65,6 @@ function findResult() {
             return;
         } else {
             startSpeek(myVariables.i18n.t("speechToText.nothingFound"));
-            //console.log("Nenašli jsme žádný stejný element na této stránce");
         };
     };
 };
@@ -74,20 +72,20 @@ function findResult() {
 function response() {
     const eventHandler = (event) => {
         if (event.key === "y") {
-            //console.log("Akce ANO byla provedena");
+            // Akce ANO byla provedena
             startSpeek(myVariables.i18n.t("speechToText.actionYes"));
             callElAction(myVariables.dynamicElemets[myVariables.currentEl]);
         } else if (event.key === "n") {
-            //console.log("Akce NE byla provedena");
+            // Akce NE byla provedena
             startSpeek(myVariables.i18n.t("speechToText.actionNo"));
         } else {
-            //console.log("neznámý hlas, zkuste to znovu");
+            // neznámý hlas, zkuste to znovu
             startSpeek(myVariables.i18n.t("speechToText.actionUnknownVoice"));
             response();
         };
     };
     document.addEventListener("keydown", eventHandler, { once: true });
-    setTimeout(() => { document.removeEventListener("keydown", eventHandler); console.log("remove"); }, 15000);
+    setTimeout(() => { document.removeEventListener("keydown", eventHandler);}, 15000);
 };
 
 function callElAction(element) {

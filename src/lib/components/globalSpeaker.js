@@ -23,7 +23,6 @@ document.addEventListener('click', function (e) {
     if (clickEl.tagName === 'A') findAllAttributes();
     else {
         while (clickEl) {
-            console.log(clickEl.tagName);
             if (clickEl.tagName === 'A') {
                 findAllAttributes();
                 break;

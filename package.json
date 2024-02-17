@@ -2,7 +2,7 @@
   "name": "blind-friendly-library",
   "version": "1.0.55",
   "description": "BFL - Blind friendly library",
-  "main": "src/lib/speaker.js",
+  "main": "src/lib/index.js",
   "dependencies": {
     "i18n-js": "^4.3.2"
   },
