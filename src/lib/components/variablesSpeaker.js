@@ -7,10 +7,6 @@ if (isFirefox) {
     recognition = "";
 } else {
     recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-    //  define the recognition settings
-    myVariables.recognition.continuous = true;
-    myVariables.recognition.interimResults = false;
-    myVariables.recognition.maxAlternatives = 1;
 }
 
 export const myVariables = {
@@ -50,6 +46,13 @@ export const myVariables = {
     speakerResult: null,
 
 };
+
+if (!isFirefox) {
+    //  define the recognition settings
+    myVariables.recognition.continuous = true;
+    myVariables.recognition.interimResults = false;
+    myVariables.recognition.maxAlternatives = 1;
+}
 
 if (myVariables.SpeechGrammarList) {
     let speechRecognitionList = new myVariables.SpeechGrammarList();

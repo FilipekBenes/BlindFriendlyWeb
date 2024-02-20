@@ -51,7 +51,7 @@ document.addEventListener("keydown", (event) => {
         if (myVariables.isRunSpeaker) {
             myVariables.synth.cancel();
             myVariables.isRunSpeaker = false;
-        } else if (myVariables.recognitionIsRun) {
+        } else if (myVariables.recognitionIsRun && !isFirefox) {
             myVariables.recognition.abort();
             myVariables.recognitionIsRun = false;
         } else if (myVariables.isRunManual) {

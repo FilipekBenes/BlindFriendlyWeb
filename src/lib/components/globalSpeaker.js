@@ -65,29 +65,3 @@ document.addEventListener("keydown", (event) => {
         else startSpeek(myVariables.i18n.t("globalSpeech.ttsEnd"));
     };
 });
-
-document.addEventListener("keydown", (event) => {
-    //key to pause all speakers
-    if (event.code === "Space" && !myVariables.recognitionIsRun) {
-        myVariables.isPsause = !myVariables.isPsause;
-        if (myVariables.isPsause) myVariables.synth.pause();
-        else myVariables.synth.resume();
-    };
-
-    //key to cancel all speakers
-    if (event.key === "Escape") {
-        if (myVariables.isRunSpeaker) {
-            myVariables.synth.cancel();
-            myVariables.isRunSpeaker = false;
-        } else if (myVariables.recognitionIsRun) {
-            myVariables.recognition.abort();
-            myVariables.recognitionIsRun = false;
-        } else if (myVariables.isRunManual) {
-            myVariables.synth.cancel();
-            myVariables.isRunManual = false;
-        } else if (myVariables.isRun) {
-            myVariables.synth.cancel();
-            myVariables.isRun = false;
-        };
-    };
-});
