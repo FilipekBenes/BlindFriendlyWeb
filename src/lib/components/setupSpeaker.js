@@ -1,4 +1,4 @@
-import { myVariables } from "./variablesSpeaker.js";
+import { myVariables, isFirefox } from "./variablesSpeaker.js";
 
 //  function to start the speaker
 export function startSpeek(text) {
@@ -11,7 +11,9 @@ export function startSpeek(text) {
     for (let i = 0; i < voices.length; i++) {
         if (voices[i].lang.includes(myVariables.LANG)) {
             utterThis.voice = voices[i];
-            myVariables.recognition.lang = voices[i].lang;
+            if (!isFirefox) {
+                myVariables.recognition.lang = voices[i].lang;
+            }
         };
     };
     utterThis.volume = myVariables.VOLUME;

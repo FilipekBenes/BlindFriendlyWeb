@@ -1,6 +1,5 @@
-import { myVariables } from "./variablesSpeaker.js";
+import { myVariables, isFirefox } from "./variablesSpeaker.js";
 import { startSpeek } from "./setupSpeaker.js";
-import { resetSpeaker } from "./speaker.js";
 
 /**
  * 
@@ -18,7 +17,9 @@ document.addEventListener("keydown", (event) => {
         //console.log(event);
         //resetSpeaker();
         myVariables.synth.cancel();
-        myVariables.recognition.abort();
+        if (!isFirefox) {
+            myVariables.recognition.abort();
+        }
         myVariables.isRun = !myVariables.isRun;
         if (myVariables.isRun) startSpeek(myVariables.i18n.t("speechFocus.ttsStart"));
         else startSpeek(myVariables.i18n.t("speechFocus.ttsEnd"));

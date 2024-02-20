@@ -1,11 +1,22 @@
 import { I18n } from "i18n-js";
 import { default as importErrorSound } from "../sounds/error.mp3";
 
+export const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+let recognition;
+if (isFirefox) {
+    recognition = "";
+} else {
+    recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    //  define the recognition settings
+    myVariables.recognition.continuous = true;
+    myVariables.recognition.interimResults = false;
+    myVariables.recognition.maxAlternatives = 1;
+}
+
 export const myVariables = {
     //  variables for Speech to text
     SpeechGrammarList: window.SpeechGrammarList || window.webkitSpeechGrammarList,
-
-    recognition: new (window.SpeechRecognition || window.webkitSpeechRecognition)(),
+    recognition: recognition,
     synth: window.speechSynthesis,
     errorSound: new Audio(importErrorSound),
 
@@ -39,11 +50,6 @@ export const myVariables = {
     speakerResult: null,
 
 };
-
-//  define the recognition settings
-myVariables.recognition.continuous = true;
-myVariables.recognition.interimResults = false;
-myVariables.recognition.maxAlternatives = 1;
 
 if (myVariables.SpeechGrammarList) {
     let speechRecognitionList = new myVariables.SpeechGrammarList();

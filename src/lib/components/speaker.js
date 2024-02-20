@@ -1,5 +1,5 @@
 //Influence of the implementation of accessibility features in the web and the library with extra features
-import { myVariables } from "./variablesSpeaker.js";
+import { myVariables, isFirefox } from "./variablesSpeaker.js";
 
 export function resetSpeaker() {
     switch (event.key) {
@@ -16,7 +16,9 @@ export function resetSpeaker() {
             break;
     };
     myVariables.synth.cancel();
-    myVariables.recognition.abort();
+    if (!isFirefox) {
+        myVariables.recognition.abort();
+    }
     myVariables.isRun = false;
     myVariables.isRunSpeaker = false;
     myVariables.isRunManual = false;
