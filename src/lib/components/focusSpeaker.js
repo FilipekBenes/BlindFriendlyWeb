@@ -14,7 +14,6 @@ const fields = [
 
 document.addEventListener("keydown", (event) => {
     if (!myVariables.isInputFocused && eval(myVariables.KSCFOCUS)) {
-        //console.log(event);
         //resetSpeaker();
         myVariables.synth.cancel();
         if (!isFirefox) {

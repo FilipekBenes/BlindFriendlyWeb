@@ -2,7 +2,7 @@
   <div id="demo">
     <DragAbleDiv v-if="isGlobalSpeakerStarted">
       <div class="flex config-div__content">
-        <input type="range" min="0" max="10" v-model="sliderValue">
+        <input type="range" min="0.5" max="2" step="0.1" v-model="sliderValue">
         <button @click="handleButtonClickPause()">PAUSE</button>
         <button @click="handleButtonClickStop()">STOP</button>
         <button @click="handleButtonClickPrevious()">←</button>
@@ -85,7 +85,7 @@ export default {
   data() {
     return {
       isGlobalSpeakerStarted: false,
-      sliderValue: 5,
+      sliderValue: 1,
       shape: [
         {
           id: 1,
@@ -147,7 +147,6 @@ export default {
   },
   watch: {
     sliderValue(newValue) {
-      console.log('New slider value:', newValue);
       setSpeedOfSpeaker(newValue);
     }
   },

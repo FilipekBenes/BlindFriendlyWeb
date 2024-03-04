@@ -65,7 +65,6 @@ export function stopSpeaker() {
 
 export function setSpeedOfSpeaker(speed) {
     myVariables.RATE = speed;
-    console.log(myVariables.RATE);
 }
 
 export function startGlobalSpeaker() {
@@ -74,9 +73,7 @@ export function startGlobalSpeaker() {
         myVariables.isRunSpeaker = !myVariables.isRunSpeaker;
         myVariables.rowCount = 1;
         startSpeaker();
-        console.log("ddd");
     }
-    console.log(myVariables.isRunSpeaker);
     return myVariables.isRunSpeaker;
 }
 

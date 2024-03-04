@@ -19,7 +19,7 @@
     "speechToText": {
         "sttStart": "Ready to take command",
         "foundElement": "We found the same element: {{currentEl}}. \nDo you want {{elAction}} on this element? \nYes or no",
-        "nothingFound": "We did not find any matching element on this page",
+        "nothingFound": "We did not find any matching element: {{currentEl}}, on this page",
         "actionYes": "YES action was performed",
         "actionNo": "The action was NOT performed",
         "actionUnknownVoice": "Unknown voice, try again"
