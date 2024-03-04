@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
-import { setBFL, setKeyBFL } from '../../lib/index';
+import { setBFL, setKeyBFL, pauseButton } from '../../lib/index';
 
 const app = createApp(App);
 app.use(router);

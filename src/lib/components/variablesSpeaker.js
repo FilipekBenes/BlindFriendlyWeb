@@ -44,7 +44,6 @@ export const myVariables = {
     dynamicElements: null,
     dynamicElementsLang: null,
     speakerResult: null,
-
 };
 
 if (!isFirefox) {

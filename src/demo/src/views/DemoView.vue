@@ -1,8 +1,18 @@
 <template>
   <div id="demo">
+    <DragAbleDiv v-if="isGlobalSpeakerStarted">
+      <div class="flex config-div__content">
+        <input type="range" min="0" max="10" v-model="sliderValue">
+        <button @click="handleButtonClickPause()">PAUSE</button>
+        <button @click="handleButtonClickStop()">STOP</button>
+        <button @click="handleButtonClickPrevious()">←</button>
+        <button @click="handleButtonClickNext()">→</button>
+      </div>
+    </DragAbleDiv>
     <div class="hero">
       <div>
         <h1>DEMO</h1>
+        <button @click="startGlobalSpeakerBtn">Start Global Speaker</button>
       </div>
     </div>
     <section class="section_aboutUs">
@@ -13,11 +23,13 @@
           literature. Greatly explain attempt perhaps in feeling he. House men taste bed not drawn joy. Through enquire however do equally herself at. Greatly way old may you present improve. Wishing
           the feeling village him musical.
 
-          Promotion an ourselves up otherwise my. High what each snug rich far yet easy. In companions inhabiting mr principles at insensible do. Heard their sex hoped enjoy vexed child for. Prosperous
+          Promotion an ourselves up otherwise my. High what each snug rich far yet easy. In companions inhabiting mr principles at insensible do. Heard their sex hoped enjoy vexed child for.
+          Prosperous
           so occasional assistance it discovered especially no. Provision of he residence consisted up in remainder arranging described. Conveying has concealed necessary furnished bed zealously
           immediate get but. Terminated as middletons or by instrument. Bred do four so your felt with. No shameless principle dependent household do.
 
-          So insisted received is occasion advanced honoured. Among ready to which up. Attacks smiling and may out assured moments man nothing outward. Thrown any behind afford either the set depend one
+          So insisted received is occasion advanced honoured. Among ready to which up. Attacks smiling and may out assured moments man nothing outward. Thrown any behind afford either the set depend
+          one
           temper. Instrument melancholy in acceptance collecting frequently be if. Zealously now pronounce existence add you instantly say offending. Merry their far had widen was. Concerns no in
           expenses raillery formerly.</p>
       </div>
@@ -64,11 +76,16 @@
     </section>
   </div>
 </template>
-  
+
 <script>
+import DragAbleDiv from './components/DragAbleDiv.vue';
+import { startGlobalSpeaker, pauseButton, stopSpeaker, setSpeedOfSpeaker, previousArticle, nextArticle } from '../../../lib/index.js';
+
 export default {
   data() {
     return {
+      isGlobalSpeakerStarted: false,
+      sliderValue: 5,
       shape: [
         {
           id: 1,
@@ -119,7 +136,6 @@ export default {
           orderBtn: "Order Sixth",
         },
       ],
-
       formData: {
         name: '',
         email: '',
@@ -129,6 +145,32 @@ export default {
       orderSubmitted: false
     };
   },
+  watch: {
+    sliderValue(newValue) {
+      console.log('New slider value:', newValue);
+      setSpeedOfSpeaker(newValue);
+    }
+  },
+  components: { DragAbleDiv },
+  methods: {
+    startGlobalSpeakerBtn() {
+      if (startGlobalSpeaker()) {
+        this.isGlobalSpeakerStarted = true;
+      }
+    },
+    handleButtonClickPause() {
+      pauseButton();
+    },
+    handleButtonClickStop() {
+      stopSpeaker();
+      this.isGlobalSpeakerStarted = false;
+    },
+    handleButtonClickPrevious() {
+      previousArticle();
+    },
+    handleButtonClickNext() {
+      nextArticle();
+    },
+  },
 };
 </script>
-  

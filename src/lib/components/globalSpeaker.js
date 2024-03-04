@@ -6,6 +6,19 @@ import { startSpeek } from "./setupSpeaker.js";
  * SpeechGlobal
  */
 
+//start speechGlobal
+document.addEventListener("keydown", (event) => {
+    if (!myVariables.isInputFocused && eval(myVariables.KSCSPEAKER)) {
+        myVariables.synth.cancel();
+        if (!isFirefox) {
+            myVariables.recognition.abort();
+        }
+        myVariables.isRunSpeaker = !myVariables.isRunSpeaker;
+        if (myVariables.isRunSpeaker) myVariables.rowCount = 1, startSpeek(myVariables.i18n.t("globalSpeech.ttsStart")), startSpeaker();
+        else startSpeek(myVariables.i18n.t("globalSpeech.ttsEnd"));
+    };
+});
+
 function findAllAttributes() {
     setTimeout(() => {
         const speakerRows = document.querySelectorAll("[data-speaker]");
@@ -31,7 +44,7 @@ document.addEventListener('click', function (e) {
         }
     }
 });
-function startSpeaker() {
+export function startSpeaker() {
     findAllAttributes();
     setTimeout(() => {
         if (myVariables.rowsArray.length > 2) {
@@ -52,16 +65,3 @@ function startSpeaker() {
         } else myVariables.synth.cancel(), startSpeek(myVariables.i18n.t("globalSpeech.textNotFound"));
     }, 1000);
 };
-
-//start speechGlobal
-document.addEventListener("keydown", (event) => {
-    if (!myVariables.isInputFocused && eval(myVariables.KSCSPEAKER)) {
-        myVariables.synth.cancel();
-        if (!isFirefox) {
-            myVariables.recognition.abort();
-        }
-        myVariables.isRunSpeaker = !myVariables.isRunSpeaker;
-        if (myVariables.isRunSpeaker) myVariables.rowCount = 1, startSpeek(myVariables.i18n.t("globalSpeech.ttsStart")), startSpeaker();
-        else startSpeek(myVariables.i18n.t("globalSpeech.ttsEnd"));
-    };
-});
