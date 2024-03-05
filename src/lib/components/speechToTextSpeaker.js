@@ -7,6 +7,7 @@ import { startSpeek } from "./setupSpeaker.js";
  */
 let command = "";
 if (!isFirefox) {
+    // Add event listener to the window load event
     window.addEventListener("load", (event) => {
         myVariables.dynamicElements = document.querySelectorAll("[data-el-text]");
 
@@ -24,7 +25,9 @@ if (!isFirefox) {
         if (!myVariables.isInputFocused && eval(myVariables.KSCVOICECONTROL) && !myVariables.recognitionIsRun) {
             myVariables.synth.cancel();
             myVariables.recognitionIsRun = !myVariables.recognitionIsRun;
+
             startSpeek(myVariables.i18n.t("speechToText.sttStart"));
+
             setTimeout(() => {
                 myVariables.recognition.start();
             }, "2000");
@@ -34,13 +37,15 @@ if (!isFirefox) {
         };
     });
 
+    // Add event listener to the recognition onresult event
     myVariables.recognition.onresult = function (event) {
         myVariables.speakerResult = event.results[0][0].transcript.toLowerCase();
-
         command = event.results[0][0].transcript.toLowerCase();
 
+        // Check if the commandsDatabase has the command as a property
         if (myVariables.commandsDatabase.hasOwnProperty(command)) {
             const commandValue = myVariables.commandsDatabase[command];
+
             if (typeof commandValue === 'object' && commandValue.dataset) {
                 if (commandValue.dataset.elAction == undefined) commandValue.dataset.elAction = "click";
                 startSpeek(myVariables.i18n.t("speechToText.foundElement", { currentEl: command, elAction: commandValue.dataset.elAction }));

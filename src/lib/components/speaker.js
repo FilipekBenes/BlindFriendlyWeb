@@ -1,30 +1,39 @@
-//Influence of the implementation of accessibility features in the web and the library with extra features
 import { myVariables, isFirefox } from "./variablesSpeaker.js";
 
-export function resetSpeaker() {
-    switch (event.key) {
-        case "1":
-            startSpeek(myVariables.i18n.t("guide.one", { speakerKey: myVariables.kscSpeaker }));
-            break;
-        case "2":
-            startSpeek(myVariables.i18n.t("guide.two", { focusKey: myVariables.kscFocus }));
-            break;
-        case "3":
-            startSpeek(myVariables.i18n.t("guide.three", { voiceControlKey: myVariables.kscVoiceControl }));
-            break;
-        default:
-            break;
-    };
-    myVariables.synth.cancel();
-    if (!isFirefox) {
-        myVariables.recognition.abort();
-    }
-    myVariables.isRun = false;
-    myVariables.isRunSpeaker = false;
-    myVariables.isRunManual = false;
-    myVariables.isRun = false;
-    myVariables.isPsause = false;
-    myVariables.recognitionIsRun = false;
+/**
+ * 
+ * Speech main function to reset speakers
+ */
+export function resetSpeaker(...keys) {
+    keys.forEach(key => {
+        switch (key) {
+            case 1:
+                myVariables.isRun = false;
+                console.log("1");
+                break;
+            case 2:
+                if (!isFirefox) {
+                    myVariables.recognition.abort();
+                }
+                break;
+            case 3:
+                myVariables.isRunSpeaker = false;
+                break;
+            case 4:
+                myVariables.synth.cancel();
+                console.log("4");
+                break;
+            case 5:
+                myVariables.isRunManual = false;
+                console.log("5");
+                break;
+            case 6:
+                myVariables.recognitionIsRun = false;
+                break;
+            default:
+                break;
+        };
+    });
 };
 
 document.addEventListener("keydown", (event) => {
@@ -37,7 +46,6 @@ document.addEventListener("keydown", (event) => {
  * 
  * Speech main function to pause and stop speaker
  */
-
 document.addEventListener("keydown", (event) => {
     //key to pause all speakers
     if (event.code === "Space" && !myVariables.recognitionIsRun) {
@@ -51,7 +59,7 @@ document.addEventListener("keydown", (event) => {
         if (myVariables.isRunSpeaker) {
             myVariables.synth.cancel();
             myVariables.isRunSpeaker = false;
-        } else if (myVariables.recognitionIsRun && !isFirefox) {
+        } else if (myVariables.recognitionIsRun && !isFirefox) {
             myVariables.recognition.abort();
             myVariables.recognitionIsRun = false;
         } else if (myVariables.isRunManual) {

@@ -1,4 +1,7 @@
+//Influence of the implementation of accessibility features in the web and the library with extra features
 import { myVariables } from './components/variablesSpeaker';
+
+// Import all localization files
 import * as langFiles from "./locales/exportLocales.js";
 import { startSpeaker } from './components/globalSpeaker.js';
 import { startSpeek } from "./components/setupSpeaker.js";
@@ -8,13 +11,14 @@ import './components/globalSpeaker';
 import './components/speechToTextSpeaker';
 import './components/manualSpeaker.js';
 
-//  function to setup speaker
+//  Function to setup speaker settings
 export function setBFL(
     volume, // From 0 to 1
     rate, // From 0.1 to 10
     pitch, // From 0 to 2
     lang
 ) {
+    // Set myVariables values for volume, rate, pitch, and language
     myVariables.VOLUME = volume;
     myVariables.RATE = rate;
     myVariables.PITCH = pitch;
@@ -23,7 +27,7 @@ export function setBFL(
     loadCustomTranslations(myVariables.LANG);
 };
 
-//  function to set the keyShortCuts
+//  Function to set key shortcuts
 export function setKeyBFL(setObject) {
     if (typeof setObject.kscFocus !== "undefined") { myVariables.KSCFOCUS = setObject.kscFocus };
     if (typeof setObject.kscSpeaker !== "undefined") { myVariables.KSCSPEAKER = setObject.kscSpeaker };
@@ -31,7 +35,7 @@ export function setKeyBFL(setObject) {
     if (typeof setObject.kscManual !== "undefined") { myVariables.KSCMANUAL = setObject.kscManual };
 };
 
-//  to define a translation
+//  Function to load custom translations for the given language
 async function loadCustomTranslations(lang) {
     if (langFiles[lang] == null) lang = "en";
     myVariables.i18n.store(langFiles[lang]);

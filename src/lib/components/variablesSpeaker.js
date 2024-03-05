@@ -1,7 +1,10 @@
 import { I18n } from "i18n-js";
 import { default as importErrorSound } from "../sounds/error.mp3";
 
+// Check if the browser is Firefox
 export const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+
+// Initialize the SpeechRecognition object
 let recognition;
 if (isFirefox) {
     recognition = "";
@@ -9,19 +12,26 @@ if (isFirefox) {
     recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
 }
 
+// Define the global variables for the application
 export const myVariables = {
-    //  variables for Speech to text
+    // Variables for Speech to text
     SpeechGrammarList: window.SpeechGrammarList || window.webkitSpeechGrammarList,
     recognition: recognition,
     synth: window.speechSynthesis,
     errorSound: new Audio(importErrorSound),
+    commandsDatabase: {},
 
     i18n: new I18n(),
 
+    // Volume, rate, and pitch settings
     VOLUME: 1,
     RATE: 1,
     PITCH: 1.2,
+
+    // Language settings
     LANG: "en",
+
+    // Interval and event listeners
     INTERVAL: null,
     KSCFOCUS: 'event.ctrlKey && event.shiftKey && event.key === "1"',
     kscFocus: "0",
@@ -44,14 +54,13 @@ export const myVariables = {
     dynamicElements: null,
     dynamicElementsLang: null,
     speakerResult: null,
-    commandsDatabase: {},
 };
 
 if (!isFirefox) {
-    //  define the recognition settings
-    myVariables.recognition.continuous = true;
-    myVariables.recognition.interimResults = false;
-    myVariables.recognition.maxAlternatives = 1;
+    //  Define the recognition settings
+    myVariables.recognition.continuous = true; // Enable continuous recognition
+    myVariables.recognition.interimResults = false; // Disable interim results
+    myVariables.recognition.maxAlternatives = 1; // Set maximum alternatives to 1
 }
 
 if (myVariables.SpeechGrammarList) {
