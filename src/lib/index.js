@@ -92,3 +92,8 @@ export function nextArticle() {
         else if (myVariables.rowCount < (myVariables.rowsArray.length - 1)) myVariables.rowCount++, startSpeek(myVariables.rowsArray[myVariables.rowCount].innerText);
     };
 }
+
+export function addCommand(key, action) {
+    // Přidání nového klíče a akce do objektu commandsDatabase
+    myVariables.commandsDatabase[key] = action;
+}

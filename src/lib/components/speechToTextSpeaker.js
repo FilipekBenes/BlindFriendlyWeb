@@ -5,7 +5,6 @@ import { startSpeek } from "./setupSpeaker.js";
  * 
  * SpeechToText
  */
-let commandsDatabase = {};
 let command = "";
 if (!isFirefox) {
     window.addEventListener("load", (event) => {
@@ -15,10 +14,11 @@ if (!isFirefox) {
             const text = element.getAttribute('data-el-text').toLowerCase();
             const elTextLang = "data-el-text-" + myVariables.LANG;
 
-            if (element.getAttribute(elTextLang) != null) commandsDatabase[element.getAttribute(elTextLang).toLowerCase()] = element;
+            if (element.getAttribute(elTextLang) != null) myVariables.commandsDatabase[element.getAttribute(elTextLang).toLowerCase()] = element;
 
-            commandsDatabase[text] = element;
+            myVariables.commandsDatabase[text] = element;
         });
+        console.log(myVariables.commandsDatabase);
     });
 
     document.addEventListener("keydown", (event) => {
@@ -40,10 +40,17 @@ if (!isFirefox) {
 
         command = event.results[0][0].transcript.toLowerCase();
 
-        if (commandsDatabase.hasOwnProperty(command)) {
-            if (commandsDatabase[command].dataset.elAction == undefined) commandsDatabase[command].dataset.elAction = "click";
-            startSpeek(myVariables.i18n.t("speechToText.foundElement", { currentEl: command, elAction: commandsDatabase[command].dataset.elAction }));
-            response();
+        if (myVariables.commandsDatabase.hasOwnProperty(command)) {
+            const commandValue = myVariables.commandsDatabase[command];
+            if (typeof commandValue === 'object' && commandValue.dataset) {
+                if (commandValue.dataset.elAction == undefined) commandValue.dataset.elAction = "click";
+                startSpeek(myVariables.i18n.t("speechToText.foundElement", { currentEl: command, elAction: commandValue.dataset.elAction }));
+                response();
+            } else if (typeof commandValue === 'function') {
+                // Pokud je hodnota klíče funkce, spustíme ji
+                commandValue();
+                startSpeek(myVariables.i18n.t("speechToText.foundMethod", { currentMethod: command }));
+            }
         } else {
             startSpeek(myVariables.i18n.t("speechToText.nothingFound", { currentEl: command }));
         }
@@ -68,7 +75,7 @@ if (!isFirefox) {
             if (event.key === "y") {
                 // Akce ANO byla provedena
                 startSpeek(myVariables.i18n.t("speechToText.actionYes"));
-                callElAction(commandsDatabase[command]);
+                callElAction(myVariables.commandsDatabase[command]);
             } else if (event.key === "n") {
                 // Akce NE byla provedena
                 startSpeek(myVariables.i18n.t("speechToText.actionNo"));

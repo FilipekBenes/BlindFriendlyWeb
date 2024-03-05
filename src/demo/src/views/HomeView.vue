@@ -49,18 +49,15 @@
           <ul>
             <li>install library</li>
           </ul>
-          <pre><code class="language-sh">npm i blind-friendly-library
-</code></pre>
+          <p>npm i blind-friendly-library</p>
           <ul>
             <li>This library needs to be imported into the main.js file in the project, specifically importing the <em>speaker.js</em> file (<code>setBFL()</code> function).</li>
           </ul>
-          <pre><code class="language-js">import { setBFL } from '../../lib/speaker.js';
-</code></pre>
+          <p>import { setBFL } from '../../lib/speaker.js';</p>
           <ul>
             <li>Then run the <code>setBFL()</code> function and insert the parameters you have chosen to set the speaker's voice.</li>
           </ul>
-          <pre><code class="language-js">setBFL(1,1,1.2,&quot;en&quot;); //(volume,rate,pitch,lang)
-</code></pre>
+          <p>setBFL(1,1,1.2,&quot;en&quot;); //(volume,rate,pitch,lang)</p>
           <ul>
             <li>
               <a href="https://bfl-t6ps.onrender.com/">demo</a>
@@ -81,8 +78,7 @@
           <ul>
             <li>Text to speech works using custom <code>data-speaker</code> attributes. These are added to the elements to be read.</li>
           </ul>
-          <pre><code class="language-html">&lt;p data-speaker&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit.&lt;/p&gt;
-</code></pre>
+          <p>&lt;p data-speaker&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit.&lt;/p&gt;</p>
           <ul>
             <li>Text to speech is activated using the <strong>2</strong> key.</li>
             <li>Use the <strong>arrows</strong> <code>(&lt;-,-&gt;)</code> to move between elements.</li>
@@ -92,10 +88,8 @@
             <li>This function works by using custom attributes <code>data-el-text</code>, which are loaded when this function is run and then searches them to see if what the user said is in them. The
               value of the custom attribute specifies the name by which the element can be found.</li>
           </ul>
-          <pre><code class="language-html">&lt;a data-el-text=&quot;Home&quot;&gt;HOME&lt;/a&gt;
-</code></pre>
-          <pre><code class="language-html">&lt;a data-el-text=&quot;Home&quot; data-el-text-en=&quot;Home&quot; data-el-text-cs=&quot;Domů&quot;&gt;HOME&lt;/a&gt;
-</code></pre>
+          <p>&lt;a data-el-text=&quot;Home&quot;&gt;HOME&lt;/a&gt;</p>
+          <p>&lt;a data-el-text=&quot;Home&quot; data-el-text-en=&quot;Home&quot; data-el-text-cs=&quot;Domů&quot;&gt;HOME&lt;/a&gt;</p>
           <ul>
             <li>Speech to text is enabled using the <strong>3</strong> key and then the user enters what is to be done.</li>
           </ul>

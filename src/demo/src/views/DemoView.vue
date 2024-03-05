@@ -79,7 +79,7 @@
 
 <script>
 import DragAbleDiv from './components/DragAbleDiv.vue';
-import { startGlobalSpeaker, pauseButton, stopSpeaker, setSpeedOfSpeaker, previousArticle, nextArticle } from '../../../lib/index.js';
+import { startGlobalSpeaker, pauseButton, stopSpeaker, setSpeedOfSpeaker, previousArticle, nextArticle, addCommand } from '../../../lib/index.js';
 
 export default {
   data() {
@@ -170,6 +170,10 @@ export default {
     handleButtonClickNext() {
       nextArticle();
     },
+  },
+  mounted() {
+    // Volání funkce pro přidání nového příkazu při načtení komponenty
+    addCommand('nový příkaz', () => { console.log('Toto je nový příkaz'); });
   },
 };
 </script>
