@@ -17,12 +17,13 @@
       "ttsStart": "Navigation has been turned on"
     },
     "speechToText": {
-        "sttStart": "Ready to take command",
-        "foundElement": "We found the same element: {{currentEl}}. \nDo you want {{elAction}} on this element? \nYes or no",
-        "nothingFound": "We did not find any matching element: {{currentEl}}, on this page",
-        "actionYes": "YES action was performed",
-        "actionNo": "The action was NOT performed",
-        "actionUnknownVoice": "Unknown voice, try again"
+      "sttStart": "Ready to take command",
+      "foundElement": "We found the same element: {{currentEl}}. \nDo you want {{elAction}} on this element? \nYes or no",
+      "foundMethod": "We found the same element: {{currentMethod}}.",
+      "nothingFound": "We did not find any matching element: {{currentEl}}, on this page",
+      "actionYes": "YES action was performed",
+      "actionNo": "The action was NOT performed",
+      "actionUnknownVoice": "Unknown voice, try again"
     }
   }
 }

@@ -18,7 +18,6 @@ if (!isFirefox) {
 
             myVariables.commandsDatabase[text] = element;
         });
-        console.log(myVariables.commandsDatabase);
     });
 
     document.addEventListener("keydown", (event) => {
@@ -47,13 +46,10 @@ if (!isFirefox) {
                 startSpeek(myVariables.i18n.t("speechToText.foundElement", { currentEl: command, elAction: commandValue.dataset.elAction }));
                 response();
             } else if (typeof commandValue === 'function') {
-                // Pokud je hodnota klíče funkce, spustíme ji
-                commandValue();
                 startSpeek(myVariables.i18n.t("speechToText.foundMethod", { currentMethod: command }));
+                commandValue();
             }
-        } else {
-            startSpeek(myVariables.i18n.t("speechToText.nothingFound", { currentEl: command }));
-        }
+        } else startSpeek(myVariables.i18n.t("speechToText.nothingFound", { currentEl: command }));
 
         myVariables.recognition.abort();
     };

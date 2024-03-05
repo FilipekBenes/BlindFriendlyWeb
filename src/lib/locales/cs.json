@@ -19,6 +19,7 @@
         "speechToText": {
             "sttStart": "Připraven přijmout příkaz",
             "foundElement": "Našli jsme stejný element: {{currentEl}}. Chcete na tento element {{elAction}} ? ano (y) nebo ne (n)",
+            "foundMethod": "Našli jsme stejný element: {{currentMethod}})",
             "nothingFound": "Nenašli jsme žádný stejný element: {{currentEl}}, na této stránce",
             "actionYes": "Akce ano byla provedena",
             "actionNo": "Akce ne byla provedena",

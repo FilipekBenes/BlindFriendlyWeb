@@ -9,7 +9,8 @@
       <div>
         <h1 data-speaker>About library</h1>
         <p>Web accessibility for people with disabilities</p>
-        <p data-speaker>The goal of my year-long thesis is to create a website that is user-friendly and accessible for the visually impaired and has features that are indispensable for these visitors.
+        <p data-speaker>The goal of my year-long thesis is to create a website that is user-friendly and accessible for the visually impaired and has features that are indispensable for these
+          visitors.
           All of
           these created features will then be implemented on our group project (Digital Textbook System) from last year. Such features include:
           TTS (text to speech), or pre-reading of web content, i.e. textbooks. The feature will have the ability to pause the readout and the ability to choose where to start reading the text from.

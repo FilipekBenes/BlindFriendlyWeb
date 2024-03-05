@@ -75,11 +75,14 @@
       </div>
     </section>
   </div>
+  <!-- <my-speaker-component v-if="isGlobalSpeakerStarted"></my-speaker-component> -->
 </template>
 
 <script>
 import DragAbleDiv from './components/DragAbleDiv.vue';
-import { startGlobalSpeaker, pauseButton, stopSpeaker, setSpeedOfSpeaker, previousArticle, nextArticle, addCommand } from '../../../lib/index.js';
+import { startGlobalSpeaker, pauseButton, stopSpeaker, setSpeedOfSpeaker, previousArticle, nextArticle, addCommand, SpeakerComponent} from '../../../lib/index.js';
+
+// customElements.define('my-speaker-component', SpeakerComponent);
 
 export default {
   data() {
@@ -172,8 +175,7 @@ export default {
     },
   },
   mounted() {
-    // Volání funkce pro přidání nového příkazu při načtení komponenty
-    addCommand('nový příkaz', () => { console.log('Toto je nový příkaz'); });
+    addCommand('new commad', () => { console.log('This is a new command!'); });
   },
 };
 </script>

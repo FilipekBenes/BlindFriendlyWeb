@@ -93,7 +93,56 @@ export function nextArticle() {
     };
 }
 
+//  function to add new speechRecognition key
 export function addCommand(key, action) {
-    // Přidání nového klíče a akce do objektu commandsDatabase
     myVariables.commandsDatabase[key] = action;
+}
+
+//  object to define Speaker component 
+export class SpeakerComponent extends HTMLElement {
+    constructor() {
+        super();
+        const shadow = this.attachShadow({ mode: 'open' });
+        shadow.innerHTML = `
+        <style>
+          .flex {
+            display: flex;
+            justify-content: center;        
+          }
+          .config-div__content {
+            margin-top: 20px;
+            background-color: #FFF;
+            padding: 16px;
+            width: fit-content;
+            border-radius: 8px;
+            position: fixed;
+            top: 8px;
+            left: 24px;
+          }
+        </style>
+        <div class="flex config-div__content">
+          <input type="range" id="rangeInput" min="0.5" max="2" step="0.1">
+          <button id="pauseButton">PAUSE</button>
+          <button id="stopButton">STOP</button>
+          <button id="previousButton">←</button>
+          <button id="nextButton">→</button>
+        </div>
+      `;
+
+        shadow.getElementById('pauseButton').addEventListener('click', this.handleButtonClickPause.bind(this));
+        shadow.getElementById('stopButton').addEventListener('click', this.handleButtonClickStop.bind(this));
+        shadow.getElementById('previousButton').addEventListener('click', this.handleButtonClickPrevious.bind(this));
+        shadow.getElementById('nextButton').addEventListener('click', this.handleButtonClickNext.bind(this));
+        shadow.getElementById('rangeInput').addEventListener('input', this.handleRangeInputChange.bind(this));
+    }
+
+    handleButtonClickPause() { pauseButton(); }
+
+    handleButtonClickStop() { stopSpeaker(); }
+
+    handleButtonClickPrevious() { previousArticle(); }
+
+    handleButtonClickNext() { nextArticle(); }
+
+    handleRangeInputChange(event) { setSpeedOfSpeaker(event.target.value); }
 }
