@@ -52,19 +52,10 @@ export function pauseButton() {
 }
 
 export function stopSpeaker() {
-    if (myVariables.isRunSpeaker) {
-        myVariables.synth.cancel();
-        myVariables.isRunSpeaker = false;
-    } else if (myVariables.recognitionIsRun && !isFirefox) {
-        myVariables.recognition.abort();
-        myVariables.recognitionIsRun = false;
-    } else if (myVariables.isRunManual) {
-        myVariables.synth.cancel();
-        myVariables.isRunManual = false;
-    } else if (myVariables.isRun) {
-        myVariables.synth.cancel();
-        myVariables.isRun = false;
-    };
+    if (myVariables.isRunSpeaker) resetSpeaker(4, 3);
+    else if (myVariables.recognitionIsRun && !isFirefox) resetSpeaker(4, 6);
+    else if (myVariables.isRunManual) resetSpeaker(4, 5);
+    else if (myVariables.isRun) resetSpeaker(4, 1);
 }
 
 export function setSpeedOfSpeaker(speed) {
@@ -73,7 +64,7 @@ export function setSpeedOfSpeaker(speed) {
 
 export function startGlobalSpeaker() {
     if (!myVariables.isRunSpeaker) {
-        myVariables.synth.cancel();
+        resetSpeaker(4);
         myVariables.isRunSpeaker = !myVariables.isRunSpeaker;
         myVariables.rowCount = 1;
         startSpeaker();
@@ -83,7 +74,7 @@ export function startGlobalSpeaker() {
 
 export function previousArticle() {
     if (myVariables.isRunSpeaker) {   //arrowLeft
-        myVariables.synth.cancel();
+        resetSpeaker(4);
         if (myVariables.rowCount === 0) myVariables.errorSound.play();
         else if (myVariables.rowCount > 0) myVariables.rowCount--, startSpeek(myVariables.rowsArray[myVariables.rowCount].innerText);
     }
@@ -91,7 +82,7 @@ export function previousArticle() {
 
 export function nextArticle() {
     if (myVariables.isRunSpeaker) { //arrowRight
-        myVariables.synth.cancel();
+        resetSpeaker(4);
         if (myVariables.rowCount === (myVariables.rowsArray.length - 1)) myVariables.errorSound.play();
         else if (myVariables.rowCount < (myVariables.rowsArray.length - 1)) myVariables.rowCount++, startSpeek(myVariables.rowsArray[myVariables.rowCount].innerText);
     };
@@ -149,4 +140,6 @@ export class SpeakerComponent extends HTMLElement {
     handleButtonClickNext() { nextArticle(); }
 
     handleRangeInputChange(event) { setSpeedOfSpeaker(event.target.value); }
-}
+};
+
+customElements.define('bfl-speaker', SpeakerComponent);

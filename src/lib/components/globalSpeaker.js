@@ -9,10 +9,7 @@ import { startSpeek } from "./setupSpeaker.js";
 //start speechGlobal
 document.addEventListener("keydown", (event) => {
     if (!myVariables.isInputFocused && eval(myVariables.KSCSPEAKER)) {
-        myVariables.synth.cancel();
-        if (!isFirefox) {
-            myVariables.recognition.abort();
-        }
+        resetSpeaker(2, 4);
         myVariables.isRunSpeaker = !myVariables.isRunSpeaker;
         if (myVariables.isRunSpeaker) myVariables.rowCount = 1, startSpeek(myVariables.i18n.t("globalSpeech.ttsStart")), startSpeaker();
         else startSpeek(myVariables.i18n.t("globalSpeech.ttsEnd"));

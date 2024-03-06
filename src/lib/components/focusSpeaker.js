@@ -14,11 +14,7 @@ const fields = [
 
 document.addEventListener("keydown", (event) => {
     if (!myVariables.isInputFocused && eval(myVariables.KSCFOCUS)) {
-        //resetSpeaker();
-        myVariables.synth.cancel();
-        if (!isFirefox) {
-            myVariables.recognition.abort();
-        }
+        resetSpeaker(2, 4);
         myVariables.isRun = !myVariables.isRun;
         if (myVariables.isRun) startSpeek(myVariables.i18n.t("speechFocus.ttsStart"));
         else startSpeek(myVariables.i18n.t("speechFocus.ttsEnd"));

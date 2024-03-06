@@ -5,36 +5,21 @@ import { myVariables, isFirefox } from "./variablesSpeaker.js";
  * Speech main function to reset speakers
  */
 export function resetSpeaker(...keys) {
+    const actions = {
+        1: () => myVariables.isRun = false,
+        2: () => { if (!isFirefox) myVariables.recognition.abort(); },
+        3: () => myVariables.isRunSpeaker = false,
+        4: () => myVariables.synth.cancel(),
+        5: () => myVariables.isRunManual = false,
+        6: () => myVariables.recognitionIsRun = false,
+        7: () => myVariables.isPsause = false,
+    };
+
     keys.forEach(key => {
-        switch (key) {
-            case 1:
-                myVariables.isRun = false;
-                console.log("1");
-                break;
-            case 2:
-                if (!isFirefox) {
-                    myVariables.recognition.abort();
-                }
-                break;
-            case 3:
-                myVariables.isRunSpeaker = false;
-                break;
-            case 4:
-                myVariables.synth.cancel();
-                console.log("4");
-                break;
-            case 5:
-                myVariables.isRunManual = false;
-                console.log("5");
-                break;
-            case 6:
-                myVariables.recognitionIsRun = false;
-                break;
-            default:
-                break;
-        };
+        const action = actions[key];
+        if (action) action();
     });
-};
+}
 
 document.addEventListener("keydown", (event) => {
     const focusedElement = document.activeElement;

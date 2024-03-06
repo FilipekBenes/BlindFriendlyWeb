@@ -6,7 +6,7 @@ import { startSpeek } from "./setupSpeaker.js";
  * SpeechManual
  */
 document.addEventListener("keydown", (event) => {
-    if (eval(myVariables.KSCMANUAL)) {
+    if (!myVariables.isInputFocused && eval(myVariables.KSCMANUAL)) {
         myVariables.isRunManual = true;
         startSpeek(myVariables.i18n.t("guide.headline"));
     };

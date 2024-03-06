@@ -75,14 +75,12 @@
       </div>
     </section>
   </div>
-  <!-- <my-speaker-component v-if="isGlobalSpeakerStarted"></my-speaker-component> -->
+  <bfl-speaker v-if="isGlobalSpeakerStarted"></bfl-speaker>
 </template>
 
 <script>
 import DragAbleDiv from './components/DragAbleDiv.vue';
 import { startGlobalSpeaker, pauseButton, stopSpeaker, setSpeedOfSpeaker, previousArticle, nextArticle, addCommand, SpeakerComponent} from '../../../lib/index.js';
-
-// customElements.define('my-speaker-component', SpeakerComponent);
 
 export default {
   data() {

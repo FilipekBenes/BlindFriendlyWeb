@@ -13,5 +13,5 @@ const myKey = {
     kscVoiceControl: 'event.key === "8"',
     kscManual: 'event.key === "7"',
 };
-setBFL(1, 1, 1.2, "cs");
+setBFL(1, 1, 1.2, "en");
 setKeyBFL(myKey);

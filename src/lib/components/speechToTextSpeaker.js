@@ -23,7 +23,7 @@ if (!isFirefox) {
 
     document.addEventListener("keydown", (event) => {
         if (!myVariables.isInputFocused && eval(myVariables.KSCVOICECONTROL) && !myVariables.recognitionIsRun) {
-            myVariables.synth.cancel();
+            resetSpeaker(4);
             myVariables.recognitionIsRun = !myVariables.recognitionIsRun;
 
             startSpeek(myVariables.i18n.t("speechToText.sttStart"));
@@ -32,8 +32,7 @@ if (!isFirefox) {
                 myVariables.recognition.start();
             }, "2000");
         } else if (myVariables.recognitionIsRun) {
-            myVariables.recognition.abort();
-            myVariables.recognitionIsRun = false;
+            resetSpeaker(4, 6);
         };
     });
 
