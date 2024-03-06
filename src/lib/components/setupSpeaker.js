@@ -35,3 +35,24 @@ export function startSpeek(text) {
 
     utterThis.onend = (event) => { clearInterval(myVariables.INTERVAL) };
 };
+
+/**
+ * 
+ * Speech main function to reset speakers
+ */
+export function resetSpeaker(...keys) {
+    const actions = {
+        1: () => myVariables.isRun = false,
+        2: () => { if (!isFirefox) myVariables.recognition.abort(); },
+        3: () => myVariables.isRunSpeaker = false,
+        4: () => myVariables.synth.cancel(),
+        5: () => myVariables.isRunManual = false,
+        6: () => myVariables.recognitionIsRun = false,
+        7: () => myVariables.isPsause = false,
+    };
+
+    keys.forEach(key => {
+        const action = actions[key];
+        if (action) action();
+    });
+}

@@ -4,7 +4,7 @@ import { myVariables } from './components/variablesSpeaker';
 // Import all localization files
 import * as langFiles from "./locales/exportLocales.js";
 import { startSpeaker } from './components/globalSpeaker.js';
-import { startSpeek } from "./components/setupSpeaker.js";
+import { startSpeek, resetSpeaker } from "./components/setupSpeaker.js";
 import './components/speaker';
 import './components/focusSpeaker';
 import './components/globalSpeaker';

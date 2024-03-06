@@ -1,5 +1,5 @@
 import { myVariables, isFirefox } from "./variablesSpeaker.js";
-import { startSpeek } from "./setupSpeaker.js";
+import { startSpeek, resetSpeaker } from "./setupSpeaker.js";
 
 /**
  * 
