@@ -1,6 +1,6 @@
 {
   "name": "blind-friendly-library",
-  "version": "1.0.64",
+  "version": "1.0.65",
   "description": "BFL - Blind friendly library",
   "main": "src/lib/index.js",
   "dependencies": {
