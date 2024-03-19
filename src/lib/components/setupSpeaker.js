@@ -2,10 +2,10 @@ import { myVariables, isFirefox } from "./variablesSpeaker.js";
 
 //  function to start the speaker
 export function startSpeek(text) {
-    // if (!myVariables.isPsause && !myVariables.isRunSpeaker) {
-    //     myVariables.synth.cancel();
-    // };
-    resetSpeaker(7, 3, 4);
+    if (!myVariables.isPsause && !myVariables.isRunSpeaker) {
+        myVariables.synth.cancel();
+    };
+    //resetSpeaker(7, 3, 4);
     clearInterval(myVariables.INTERVAL);
     let voices = myVariables.synth.getVoices();
     const utterThis = new SpeechSynthesisUtterance(text);
