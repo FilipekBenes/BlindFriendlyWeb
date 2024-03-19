@@ -49,6 +49,11 @@ export function pauseButton() {
         if (myVariables.isPsause) myVariables.synth.pause();
         else myVariables.synth.resume();
     };
+    return myVariables.isPsause;
+}
+
+export function isPauseBfl() {
+    return myVariables.isPsause;
 }
 
 export function stopSpeaker() {
@@ -73,11 +78,21 @@ export function startGlobalSpeaker() {
 }
 
 export function previousArticle() {
-    if (myVariables.isRunSpeaker) {   //arrowLeft
+    if (myVariables.isRunSpeaker) { //arrowLeft
         resetSpeaker(4);
-        if (myVariables.rowCount === 0) myVariables.errorSound.play();
-        else if (myVariables.rowCount > 0) myVariables.rowCount--, startSpeek(myVariables.rowsArray[myVariables.rowCount].innerText);
+        if (myVariables.rowCount === 1) myVariables.errorSound.play();
+        else if (myVariables.rowCount > 1) myVariables.rowCount--, startSpeek(myVariables.rowsArray[myVariables.rowCount].innerText);
     }
+}
+
+export function hasPrevious() {
+    if (myVariables.rowCount === 1) return false;
+    else if (myVariables.rowCount > 1) return true;
+}
+
+export function hasNext() {
+    if (myVariables.rowCount === (myVariables.rowsArray.length - 1)) return false;
+    else if (myVariables.rowCount < (myVariables.rowsArray.length - 1)) return true;
 }
 
 export function nextArticle() {

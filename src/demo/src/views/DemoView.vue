@@ -80,7 +80,7 @@
 
 <script>
 import DragAbleDiv from './components/DragAbleDiv.vue';
-import { startGlobalSpeaker, pauseButton, stopSpeaker, setSpeedOfSpeaker, previousArticle, nextArticle, addCommand, SpeakerComponent} from '../../../lib/index.js';
+import { startGlobalSpeaker, pauseButton, stopSpeaker, setSpeedOfSpeaker, previousArticle, nextArticle, addCommand, isPauseBfl, hasNext, hasPrevious} from '../../../lib/index.js';
 
 export default {
   data() {
@@ -160,15 +160,18 @@ export default {
     },
     handleButtonClickPause() {
       pauseButton();
+      console.log(isPauseBfl());
     },
     handleButtonClickStop() {
       stopSpeaker();
       this.isGlobalSpeakerStarted = false;
     },
     handleButtonClickPrevious() {
+      console.log(hasPrevious());
       previousArticle();
     },
     handleButtonClickNext() {
+      console.log(hasNext());
       nextArticle();
     },
   },
