@@ -1,33 +1,15 @@
 # Blind friendly lib
 Web accessibility for people with disabilities
 
-### Description
-Annotation to the year's work:
-
-The goal of my year-long thesis is to create a website that is user-friendly and accessible for the visually impaired and has features that are indispensable for these visitors. All of these created features will then be implemented on our group project (Digital Textbook System) from last year. Such features include:
-
-TTS (text to speech), or pre-reading of web content, i.e. textbooks. The feature will have the ability to pause the readout and the ability to choose where to start reading the text from.
-In addition, the entire site needs to be customized to be easy to navigate using the keyboard. This is so that if the user gets to a link, button or image etc..., there will be an option to turn on a voice navigator to tell the user what element they are currently on and what it means.
-A mode with sufficient contrast of colors and textures.
-The impact of implementing accessibility features in the web and a library with extra features
-
-This year's work focuses on the implementation of accessibility elements into the web, proper UI/UX planning and their subsequent impact on the spectrum of web users - that is, users who need the elements and users who may use them unconditionally. It therefore consists of two complementary parts:
-
-- Implementation of accessibility features
-These features are mostly the W3C WAI standard. These include, for example, alternative image captions (alt), keyboard controls, audio transcription, or color modes. The goal is to connect with an organization that includes, for example, visually impaired people and use their additional suggestions based on feedback.
-
-- A library with superior features
-Additional features that are not among the standard ones, but can be particularly beneficial for ordinary users and can also be implemented in general - independently of the web, the aim is to group them into a library. This library would then provide these functions with instructions on how to use them. Examples of these features include TTS (Text To Speech) or voice control.
-
 - [demo](https://bfl-t6ps.onrender.com/)
 
 ### Table of Contents
 - [Blind friendly lib](#blind-friendly-lib)
-    - [Description](#description)
     - [Table of Contents](#table-of-contents)
     - [Technologies Used](#technologies-used)
     - [Instalition and Usage](#instalition-and-usage)
     - [Project Setup](#project-setup)
+    - [Configure library](#configure-library)
 
 ### Technologies Used
 - JS
@@ -39,7 +21,7 @@ Additional features that are not among the standard ones, but can be particularl
 ```sh
 npm i blind-friendly-library
 ```
-- This library needs to be imported into the main.js file in the project, specifically importing the *speaker.js* file (`setBFL()` function).
+- This library needs to be imported into the main.js file in the project, specifically importing the *index.js* file (`setBFL()` function).
 
 ```js
 import { setBFL } from '../../lib/index.js';
@@ -49,7 +31,6 @@ import { setBFL } from '../../lib/index.js';
 ```js
 setBFL(1,1,1.2,"en"); //(volume,rate,pitch,lang)
 ```
-
 ***
 ### Project Setup
 - The project has three main functions TTS (text to speech), SF (speech focus) and VC (voice control).
@@ -84,3 +65,42 @@ setBFL(1,1,1.2,"en"); //(volume,rate,pitch,lang)
   - Speech to text is enabled using the **CTRL+SHIFT+3** key and then the user enters what is to be done.
 **4. Manual**
   - Press **CTRL+SHIFT+4** to turn on the guide.
+
+***
+### Configure library
+
+**Keyboard shortCuts change**
+  - You can also use the function to override keys to trigger functions in main.js
+  ```js
+  const myKey = {
+    kscFocus: 'event.key === "1"',
+    kscSpeaker: 'event.key === "2"',
+    kscVoiceControl: 'event.key === "3"',
+    kscManual: 'event.key === "4"',
+  };
+  setBFL(1, 1, 1.2, "en");
+  setKeyBFL(myKey); 
+  ```
+**Importing Speaker functions**
+- Functions to make for example GUI for your Speaker, or just start Speaker from Button.
+  ```js
+  import * as BFL from "blind-friendly-library/src/lib/index.js";
+
+  BFL.startGlobalSpeaker();
+
+  BFL.setSpeedOfSpeaker(newValue);
+  BFL.pauseButton();
+  BFL.stopSpeaker();
+  BFL.previousArticle();
+  BFL.nextArticle();
+
+  BFL.hasPrevious();
+  BFL.hasNext();
+  BFL.isPauseBfl();
+
+  this.isGlobalSpeakerStarted = false;
+  ```
+- Voice control function for adding a new command
+  ```js
+  BFL.addCommand('new commad', () => { console.log('This is a new command!'); });
+  ```

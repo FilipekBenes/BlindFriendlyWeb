@@ -34,11 +34,11 @@ export const myVariables = {
     // Interval and event listeners
     INTERVAL: null,
     KSCFOCUS: 'event.ctrlKey && event.shiftKey && event.key === "1"',
-    kscFocus: "0",
+    kscFocus: "1",
     KSCSPEAKER: 'event.ctrlKey && event.shiftKey && event.key === "2"',
-    kscSpeaker: "9",
+    kscSpeaker: "2",
     KSCVOICECONTROL: 'event.ctrlKey && event.shiftKey && event.key === "3"',
-    kscVoiceControl: "8",
+    kscVoiceControl: "3",
     KSCMANUAL: 'event.ctrlKey && event.shiftKey && event.key === "4"',
 
     isRun: false,

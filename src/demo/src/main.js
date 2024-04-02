@@ -8,10 +8,10 @@ app.use(router);
 app.mount('#app');
 
 const myKey = {
-    kscFocus: 'event.key === "0"',
-    kscSpeaker: 'event.key === "9"',
-    kscVoiceControl: 'event.key === "8"',
-    kscManual: 'event.key === "7"',
+    kscFocus: 'event.key === "1"',
+    kscSpeaker: 'event.key === "2"',
+    kscVoiceControl: 'event.key === "3"',
+    kscManual: 'event.key === "4"',
 };
 setBFL(1, 1, 1.2, "en");
 setKeyBFL(myKey);
