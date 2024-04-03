@@ -20,7 +20,7 @@
     "dev": "vite ./src/demo --host",
     "build": "vite build ./src/demo",
     "preview": "vite preview ./src/demo",
-    "version-patch": "git add . && git commit -m \"UPDATE: version 1.1.0 \" && npm version patch -m \"Upgrade to version %s\"",
+    "version-patch": "git add . && git commit -m \"UPDATE: bug fix \" && npm version patch -m \"Upgrade to version %s\"",
     "version-minor": "npm version minor -m \"Upgrade to version %s\"",
     "version-major": "npm version major -m \"Upgrade to version %s\"",
     "postversion": "git push --follow-tags"
