@@ -1,0 +1,29 @@
+{
+    "es": {
+        "globalSpeech": {
+            "textNotFound": "No hay texto para leer",
+            "ttsEnd": "Se ha apagado el altavoz",
+            "ttsStart": "El altavoz se ha encendido"
+        },
+        "guide": {
+            "headline": "Bienvenido a la guía. Pulse uno para obtener una explicación de 'altavoz'. Para 'altavoz enfocado' pulse dos. Para 'control por voz del sitio' pulse tres",
+            "uno": "El altavoz se activa con la tecla {{speakerKey}}. \n La tecla 'barra espaciadora' funciona para pausar el altavoz. La tecla 'escape' funciona para cerrar y cancelar el altavoz",
+            "two": "El altavoz enfocado se enciende usando el atajo de teclado {{focusKey}}. \n A continuación, utilice la tecla 'TAB' para alternar entre los elementos dinámicos, la tecla 'ENTER' realiza la acción en el elemento. Para apagar, pulse la tecla 'ESCAPE'",
+            "three": "El control por voz se activa mediante el atajo de teclado {{voiceControlKey}}. \n A continuación, diga el nombre del elemento que desea encontrar. Si no existe, el 'altavoz' te lo dirá. Si existe, el 'altavoz' te preguntará si quieres o no realizar la acción de ese elemento. Sí significa pulsar la tecla Y, no la tecla N"
+        },
+        "speechFocus": {
+            "notFound": "El elemento desconocido",
+            "ttsEnd": "La navegación ha sido desactivada",
+            "ttsStart": "Se ha activado la navegación"
+        },
+        "speechToText": {
+            "sttStart": "Listo para aceptar orden",
+            "foundElement": "Encontrado el mismo elemento: {{currentEl}}. ¿Desea {{elAction}} sobre este elemento? sí (y) o no (n)",
+            "foundMethod": "Hemos encontrado el mismo elemento: {{{currentMethod}})",
+            "nothingFound": "No hemos encontrado ningún elemento coincidente: {{{currentEl}}, en esta página",
+            "actionYes": "Se ha realizado la acción sí",
+            "actionNo": "Acción no realizada",
+            "actionUnknownVoice": "Voz desconocida, inténtelo de nuevo"
+        }
+    }
+}

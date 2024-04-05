@@ -1,0 +1,29 @@
+{
+    "de": {
+        "globalSpeech": {
+            "textNotFound": "Es ist kein Text zu lesen",
+            "ttsEnd": "Lautsprecher wurde ausgeschaltet",
+            "ttsStart": "Lautsprecher wurde eingeschaltet"
+        },
+        "guide": {
+            "headline": "Willkommen in der Anleitung. Drücken Sie die Eins für eine Erklärung von 'Lautsprecher'. Für 'fokussierter Lautsprecher' drücken Sie die Zwei. Für 'Sprachsteuerung der Website' drücken Sie die Drei.",
+            "one": "Der Lautsprecher wird mit der Taste {{speakerKey}} eingeschaltet. \n Die 'Leertaste' dient zum Anhalten des Lautsprechers. Die 'Escape'-Taste dient zum Schließen und Abbrechen des Lautsprechers.",
+            "two": "Der fokussierte Lautsprecher wird mit dem Tastaturkürzel {{focusKey}} eingeschaltet. \n Verwenden Sie dann die 'TAB'-Taste, um zwischen dynamischen Elementen umzuschalten, die 'ENTER'-Taste führt die Aktion auf dem Element aus. Zum Ausschalten klicken Sie auf die 'ESCAPE'-Taste.",
+            "drei": "Die Sprachsteuerung wird mit dem Tastaturkürzel {{voiceControlKey}} aktiviert. \n Sagen Sie dann den Namen des Elements, das Sie suchen. Wenn es nicht existiert, wird der 'speaker' es Ihnen sagen. Wenn es vorhanden ist, fragt der 'Sprecher', ob Sie die Aktion des Elements ausführen wollen oder nicht. Ja bedeutet, dass Sie auf die Y-Taste klicken, nicht auf die N-Taste."
+        },
+        "speechFocus": {
+            "notFound": "Unbekanntes Element",
+            "ttsEnd": "Die Navigation wurde deaktiviert",
+            "ttsStart": "Die Navigation wurde eingeschaltet"
+        },
+        "speechToText": {
+            "sttStart": "Bereit, Befehl zu akzeptieren",
+            "foundElement": "Habe das gleiche Element gefunden: {{currentEl}}. Möchten Sie {{elAction}} auf dieses Element anwenden? ja (y) oder nein (n)",
+            "foundMethod": "Wir haben das gleiche Element gefunden: {{currentMethod}})",
+            "nothingFound": "Wir haben kein passendes Element gefunden: {{currentEl}}, auf dieser Seite",
+            "actionYes": "Aktion ja wurde durchgeführt",
+            "actionNo": "Aktion nicht ausgeführt",
+            "actionUnknownVoice": "Unbekannte Stimme, versuchen Sie es erneut"
+        }
+    }
+}
