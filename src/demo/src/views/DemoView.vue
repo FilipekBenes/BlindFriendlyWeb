@@ -75,7 +75,7 @@
       </div>
     </section>
   </div>
-  <bfl-speaker v-if="isGlobalSpeakerStarted"></bfl-speaker>
+  <!-- <bfl-speaker v-if="isGlobalSpeakerStarted"></bfl-speaker> -->
 </template>
 
 <script>
